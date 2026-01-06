@@ -83,14 +83,14 @@ const items = [
     // Staff Produksi Section
     {
         title: "Input Stok",
-        url: "/crew/stok",
+        url: "/staff/stok",
         icon: Package,
         section: "staff"
     },
     // Crew Outlet Section
     {
         title: "Input Penjualan",
-        url: "/booth/penjualan",
+        url: "/crew/penjualan",
         icon: ClipboardList,
         section: "crew"
     },

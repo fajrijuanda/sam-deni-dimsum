@@ -14,7 +14,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList } from "lucide-react"
+import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList, UtensilsCrossed } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Menu items.
@@ -30,6 +30,12 @@ const items = [
         title: "Outlet",
         url: "/admin/outlets",
         icon: Store,
+        section: "admin"
+    },
+    {
+        title: "Manajemen Menu",
+        url: "/admin/menu",
+        icon: UtensilsCrossed,
         section: "admin"
     },
     {

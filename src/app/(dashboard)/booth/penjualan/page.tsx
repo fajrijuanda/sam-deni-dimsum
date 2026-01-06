@@ -296,26 +296,30 @@ export default function BoothPenjualanPage() {
             {/* Submit Section - Fixed at bottom */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-sm border-t border-slate-200 z-50">
                 <div className="max-w-4xl mx-auto flex items-center justify-between">
-                    <div className="grid grid-cols-3 gap-4 text-center">
-                        <div>
-                            <p className="text-xs text-slate-500">Total Pemasukan</p>
-                            <p className="text-lg font-bold text-green-600">{formatCurrency(totalPemasukan)}</p>
+                    <div className="grid grid-cols-4 gap-3 text-center">
+                        <div className="bg-amber-50 px-3 py-2 rounded-lg">
+                            <p className="text-xs text-amber-600">Est. dari Menu</p>
+                            <p className="text-lg font-bold text-amber-700">{formatCurrency(estimatedRevenue)}</p>
                         </div>
-                        <div>
-                            <p className="text-xs text-slate-500">Pengeluaran</p>
-                            <p className="text-lg font-bold text-red-500">{formatCurrency(totalPengeluaran)}</p>
+                        <div className="bg-green-50 px-3 py-2 rounded-lg">
+                            <p className="text-xs text-green-600">Total Pemasukan</p>
+                            <p className="text-lg font-bold text-green-700">{formatCurrency(totalPemasukan)}</p>
                         </div>
-                        <div>
-                            <p className="text-xs text-slate-500">Netto</p>
-                            <p className="text-lg font-bold text-blue-600">{formatCurrency(netIncome)}</p>
+                        <div className="bg-red-50 px-3 py-2 rounded-lg">
+                            <p className="text-xs text-red-600">Pengeluaran</p>
+                            <p className="text-lg font-bold text-red-700">{formatCurrency(totalPengeluaran)}</p>
+                        </div>
+                        <div className="bg-blue-50 px-3 py-2 rounded-lg">
+                            <p className="text-xs text-blue-600">Netto</p>
+                            <p className="text-lg font-bold text-blue-700">{formatCurrency(netIncome)}</p>
                         </div>
                     </div>
                     <Button
                         onClick={handleSubmit}
                         disabled={isSubmitting || showSuccess}
                         className={`px-8 py-6 text-lg ${showSuccess
-                                ? "bg-green-500 hover:bg-green-500"
-                                : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+                            ? "bg-green-500 hover:bg-green-500"
+                            : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
                             } text-white`}
                     >
                         {isSubmitting ? (

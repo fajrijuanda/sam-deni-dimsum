@@ -34,7 +34,26 @@ CREATE TABLE IF NOT EXISTS products (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Insert products based on menu
+-- Add missing columns if table already exists
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'variant') THEN
+        ALTER TABLE products ADD COLUMN variant TEXT;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'pcs_per_portion') THEN
+        ALTER TABLE products ADD COLUMN pcs_per_portion INTEGER DEFAULT 1;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'is_active') THEN
+        ALTER TABLE products ADD COLUMN is_active BOOLEAN DEFAULT TRUE;
+    END IF;
+END $$;
+
+-- Insert products based on menu (only if not exists)
 INSERT INTO products (name, category, variant, price, pcs_per_portion) VALUES
 -- Dimsum variants
 ('Dimsum Udang', 'dimsum', 'udang', 0, 1),

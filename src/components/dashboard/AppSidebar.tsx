@@ -14,60 +14,85 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck } from "lucide-react"
+import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Menu items.
 const items = [
+    // Admin Section
     {
         title: "Dashboard",
         url: "/admin",
         icon: Home,
+        section: "admin"
     },
     {
         title: "Outlet",
         url: "/admin/outlets",
         icon: Store,
+        section: "admin"
     },
     {
         title: "Sales",
         url: "/admin/sales",
         icon: ShoppingCart,
+        section: "admin"
     },
     {
         title: "Inventory",
         url: "/admin/inventory",
         icon: Box,
+        section: "admin"
     },
     {
         title: "User Management",
         url: "/admin/users",
         icon: Users,
+        section: "admin"
     },
     {
         title: "Manajemen Mitra",
         url: "/admin/mitra",
         icon: Users,
+        section: "admin"
     },
     {
         title: "Pesanan Restock",
         url: "/admin/restock",
         icon: Truck,
+        section: "admin"
     },
     {
         title: "Laporan Keuangan",
         url: "/admin/finance",
         icon: Calculator,
+        section: "admin"
     },
     {
         title: "Analytics",
         url: "/admin/analytics",
         icon: BarChart3,
+        section: "admin"
+    },
+    // Crew Section
+    {
+        title: "Input Stok",
+        url: "/crew/stok",
+        icon: Package,
+        section: "crew"
+    },
+    // Booth Section
+    {
+        title: "Input Penjualan",
+        url: "/booth/penjualan",
+        icon: ClipboardList,
+        section: "booth"
     },
     {
         title: "Settings",
         url: "/settings",
         icon: Settings,
+        section: "settings"
     },
 ]
 

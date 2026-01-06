@@ -143,17 +143,41 @@ BEGIN
 END $$;
 
 -- ============================================
--- 3. STOCK MOVEMENTS TABLE
+-- 3. OUTLETS TABLE (if not exists)
+-- ============================================
+CREATE TABLE IF NOT EXISTS outlets (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL,
+    address TEXT,
+    phone TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============================================
+-- 4. USERS TABLE (if not exists)
+-- ============================================
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email TEXT UNIQUE,
+    name TEXT,
+    role TEXT DEFAULT 'crew_outlet',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============================================
+-- 5. STOCK MOVEMENTS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS stock_movements (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    outlet_id UUID NOT NULL REFERENCES outlets(id) ON DELETE CASCADE,
-    product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    outlet_id UUID,
+    product_id UUID,
     movement_type TEXT NOT NULL CHECK (movement_type IN ('masuk', 'keluar', 'kembali')),
     quantity INTEGER NOT NULL,
     date DATE NOT NULL DEFAULT CURRENT_DATE,
     notes TEXT,
-    inputted_by UUID REFERENCES users(id),
+    inputted_by UUID,
     synced_to_sheets BOOLEAN DEFAULT FALSE,
     sheets_row_id TEXT,
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -183,16 +207,16 @@ BEGIN
 END $$;
 
 -- ============================================
--- 5. ITEM SALES TABLE (for per-item tracking)
+-- 7. ITEM SALES TABLE (for per-item tracking)
 -- ============================================
 CREATE TABLE IF NOT EXISTS item_sales (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    daily_sales_id UUID REFERENCES daily_sales(id) ON DELETE CASCADE,
-    outlet_id UUID NOT NULL REFERENCES outlets(id) ON DELETE CASCADE,
-    product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    daily_sales_id UUID,
+    outlet_id UUID,
+    product_id UUID,
     quantity INTEGER NOT NULL DEFAULT 0,
     date DATE NOT NULL DEFAULT CURRENT_DATE,
-    inputted_by UUID REFERENCES users(id),
+    inputted_by UUID,
     synced_to_sheets BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -212,11 +236,11 @@ CREATE POLICY "Allow all access" ON stock_movements FOR ALL USING (true);
 CREATE POLICY "Allow all access" ON item_sales FOR ALL USING (true);
 
 -- ============================================
--- 7. GOOGLE SHEETS CONFIG TABLE
+-- 9. GOOGLE SHEETS CONFIG TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS sheets_config (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    outlet_id UUID UNIQUE REFERENCES outlets(id) ON DELETE CASCADE,
+    outlet_id UUID UNIQUE,
     spreadsheet_id TEXT NOT NULL,
     sheet_stok_masuk TEXT DEFAULT 'Stok Masuk',
     sheet_stok_keluar TEXT DEFAULT 'Stok Keluar',

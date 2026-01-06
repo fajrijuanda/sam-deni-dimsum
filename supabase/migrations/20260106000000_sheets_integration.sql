@@ -308,9 +308,32 @@ ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE stock_movements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE item_sales ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow all access" ON products FOR ALL USING (true);
-CREATE POLICY "Allow all access" ON stock_movements FOR ALL USING (true);
-CREATE POLICY "Allow all access" ON item_sales FOR ALL USING (true);
+DO $$
+BEGIN
+    -- products policy
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_policies 
+        WHERE tablename = 'products' AND policyname = 'Allow all access'
+    ) THEN
+        CREATE POLICY "Allow all access" ON products FOR ALL USING (true);
+    END IF;
+    
+    -- stock_movements policy
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_policies 
+        WHERE tablename = 'stock_movements' AND policyname = 'Allow all access'
+    ) THEN
+        CREATE POLICY "Allow all access" ON stock_movements FOR ALL USING (true);
+    END IF;
+    
+    -- item_sales policy
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_policies 
+        WHERE tablename = 'item_sales' AND policyname = 'Allow all access'
+    ) THEN
+        CREATE POLICY "Allow all access" ON item_sales FOR ALL USING (true);
+    END IF;
+END $$;
 
 -- ============================================
 -- 9. GOOGLE SHEETS CONFIG TABLE
@@ -328,7 +351,15 @@ CREATE TABLE IF NOT EXISTS sheets_config (
 );
 
 ALTER TABLE sheets_config ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow all access" ON sheets_config FOR ALL USING (true);
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_policies 
+        WHERE tablename = 'sheets_config' AND policyname = 'Allow all access'
+    ) THEN
+        CREATE POLICY "Allow all access" ON sheets_config FOR ALL USING (true);
+    END IF;
+END $$;
 
 -- Success
 DO $$

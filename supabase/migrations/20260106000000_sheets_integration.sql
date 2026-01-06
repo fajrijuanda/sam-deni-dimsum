@@ -203,22 +203,69 @@ BEGIN
     END IF;
     
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'quantity') THEN
+        ALTER TABLE stock_movements ADD COLUMN quantity INTEGER DEFAULT 0;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'date') THEN
+        ALTER TABLE stock_movements ADD COLUMN date DATE DEFAULT CURRENT_DATE;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'notes') THEN
+        ALTER TABLE stock_movements ADD COLUMN notes TEXT;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'inputted_by') THEN
+        ALTER TABLE stock_movements ADD COLUMN inputted_by UUID;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
                    WHERE table_name = 'stock_movements' AND column_name = 'synced_to_sheets') THEN
         ALTER TABLE stock_movements ADD COLUMN synced_to_sheets BOOLEAN DEFAULT FALSE;
     END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'sheets_row_id') THEN
+        ALTER TABLE stock_movements ADD COLUMN sheets_row_id TEXT;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'created_at') THEN
+        ALTER TABLE stock_movements ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'updated_at') THEN
+        ALTER TABLE stock_movements ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
+    END IF;
 END $$;
 
--- Indexes (only create if column exists)
+-- Indexes (only create if column exists - all wrapped in DO blocks)
 DO $$
 BEGIN
     IF EXISTS (SELECT 1 FROM information_schema.columns 
                WHERE table_name = 'stock_movements' AND column_name = 'outlet_id') THEN
         CREATE INDEX IF NOT EXISTS idx_stock_movements_outlet ON stock_movements(outlet_id);
     END IF;
+    
+    IF EXISTS (SELECT 1 FROM information_schema.columns 
+               WHERE table_name = 'stock_movements' AND column_name = 'date') THEN
+        CREATE INDEX IF NOT EXISTS idx_stock_movements_date ON stock_movements(date);
+    END IF;
+    
+    IF EXISTS (SELECT 1 FROM information_schema.columns 
+               WHERE table_name = 'stock_movements' AND column_name = 'movement_type') THEN
+        CREATE INDEX IF NOT EXISTS idx_stock_movements_type ON stock_movements(movement_type);
+    END IF;
+    
+    IF EXISTS (SELECT 1 FROM information_schema.columns 
+               WHERE table_name = 'stock_movements' AND column_name = 'synced_to_sheets') THEN
+        CREATE INDEX IF NOT EXISTS idx_stock_movements_sync ON stock_movements(synced_to_sheets);
+    END IF;
 END $$;
-CREATE INDEX IF NOT EXISTS idx_stock_movements_date ON stock_movements(date);
-CREATE INDEX IF NOT EXISTS idx_stock_movements_type ON stock_movements(movement_type);
-CREATE INDEX IF NOT EXISTS idx_stock_movements_sync ON stock_movements(synced_to_sheets);
 
 -- ============================================
 -- 4. UPDATE DAILY_SALES TABLE

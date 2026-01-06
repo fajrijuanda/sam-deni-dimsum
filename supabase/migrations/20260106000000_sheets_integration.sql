@@ -37,19 +37,46 @@ CREATE TABLE IF NOT EXISTS products (
 -- Add missing columns if table already exists
 DO $$ 
 BEGIN
+    -- Add price column
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'price') THEN
+        ALTER TABLE products ADD COLUMN price INTEGER NOT NULL DEFAULT 0;
+    END IF;
+
+    -- Add category column
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'category') THEN
+        ALTER TABLE products ADD COLUMN category TEXT NOT NULL DEFAULT 'dimsum';
+    END IF;
+
+    -- Add variant column
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
                    WHERE table_name = 'products' AND column_name = 'variant') THEN
         ALTER TABLE products ADD COLUMN variant TEXT;
     END IF;
     
+    -- Add pcs_per_portion column
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
                    WHERE table_name = 'products' AND column_name = 'pcs_per_portion') THEN
         ALTER TABLE products ADD COLUMN pcs_per_portion INTEGER DEFAULT 1;
     END IF;
     
+    -- Add is_active column
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
                    WHERE table_name = 'products' AND column_name = 'is_active') THEN
         ALTER TABLE products ADD COLUMN is_active BOOLEAN DEFAULT TRUE;
+    END IF;
+    
+    -- Add created_at column
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'created_at') THEN
+        ALTER TABLE products ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+    END IF;
+    
+    -- Add updated_at column
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'updated_at') THEN
+        ALTER TABLE products ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
     END IF;
 END $$;
 

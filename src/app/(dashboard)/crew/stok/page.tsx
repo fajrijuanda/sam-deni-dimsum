@@ -53,7 +53,7 @@ export default function CrewStokPage() {
 
     const handleQuantityChange = (productId: string, value: string) => {
         const qty = parseInt(value) || 0
-        setEntries(prev => prev.map(e => 
+        setEntries(prev => prev.map(e =>
             e.productId === productId ? { ...e, quantity: qty } : e
         ))
     }
@@ -71,7 +71,7 @@ export default function CrewStokPage() {
         }
 
         setIsSubmitting(true)
-        
+
         // TODO: Submit to Supabase and sync to Google Sheets
         console.log("Submitting:", {
             type: activeTab,
@@ -82,10 +82,10 @@ export default function CrewStokPage() {
 
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000))
-        
+
         setIsSubmitting(false)
         setShowSuccess(true)
-        
+
         // Reset form after success
         setTimeout(() => {
             setShowSuccess(false)
@@ -120,7 +120,7 @@ export default function CrewStokPage() {
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
                     Input Stok Harian
                 </h1>
-                <p className="text-slate-500 mt-1">Crew Produksi - Kelola stok masuk, keluar, dan kembali</p>
+                <p className="text-slate-500 mt-1">Staff Produksi - Kelola stok masuk, keluar, dan kembali</p>
             </div>
 
             {/* Outlet & Date Selection */}
@@ -155,21 +155,21 @@ export default function CrewStokPage() {
             {/* Stock Input Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="grid w-full grid-cols-3 bg-slate-100 p-1">
-                    <TabsTrigger 
-                        value="masuk" 
+                    <TabsTrigger
+                        value="masuk"
                         className="data-[state=active]:bg-green-500 data-[state=active]:text-white flex items-center gap-2"
                     >
                         <ArrowDownToLine className="w-4 h-4" />
                         Stok Masuk
                     </TabsTrigger>
-                    <TabsTrigger 
+                    <TabsTrigger
                         value="keluar"
                         className="data-[state=active]:bg-red-500 data-[state=active]:text-white flex items-center gap-2"
                     >
                         <ArrowUpFromLine className="w-4 h-4" />
                         Stok Keluar
                     </TabsTrigger>
-                    <TabsTrigger 
+                    <TabsTrigger
                         value="kembali"
                         className="data-[state=active]:bg-amber-500 data-[state=active]:text-white flex items-center gap-2"
                     >
@@ -263,11 +263,10 @@ export default function CrewStokPage() {
                     <Button
                         onClick={handleSubmit}
                         disabled={isSubmitting || showSuccess}
-                        className={`px-8 py-6 text-lg ${
-                            showSuccess 
-                                ? "bg-green-500 hover:bg-green-500" 
+                        className={`px-8 py-6 text-lg ${showSuccess
+                                ? "bg-green-500 hover:bg-green-500"
                                 : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
-                        } text-white`}
+                            } text-white`}
                     >
                         {isSubmitting ? (
                             <>Menyimpan...</>

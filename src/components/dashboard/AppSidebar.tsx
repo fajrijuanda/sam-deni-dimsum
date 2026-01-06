@@ -80,19 +80,19 @@ const items = [
         icon: BarChart3,
         section: "admin"
     },
-    // Crew Section
+    // Staff Produksi Section
     {
         title: "Input Stok",
         url: "/crew/stok",
         icon: Package,
-        section: "crew"
+        section: "staff"
     },
-    // Booth Section
+    // Crew Outlet Section
     {
         title: "Input Penjualan",
         url: "/booth/penjualan",
         icon: ClipboardList,
-        section: "booth"
+        section: "crew"
     },
     {
         title: "Settings",

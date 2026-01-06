@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- Add missing columns if table already exists
 DO $$ 
 BEGIN
-    -- Add price column
+    -- Add price column (our new column)
     IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
                    WHERE table_name = 'products' AND column_name = 'price') THEN
         ALTER TABLE products ADD COLUMN price INTEGER NOT NULL DEFAULT 0;
@@ -78,34 +78,69 @@ BEGIN
                    WHERE table_name = 'products' AND column_name = 'updated_at') THEN
         ALTER TABLE products ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
     END IF;
+    
+    -- If base_price exists but is nullable, update with default value
+    IF EXISTS (SELECT 1 FROM information_schema.columns 
+               WHERE table_name = 'products' AND column_name = 'base_price') THEN
+        UPDATE products SET base_price = COALESCE(base_price, 0) WHERE base_price IS NULL;
+    END IF;
 END $$;
 
--- Insert products based on menu (only if not exists)
-INSERT INTO products (name, category, variant, price, pcs_per_portion) VALUES
--- Dimsum variants
-('Dimsum Udang', 'dimsum', 'udang', 0, 1),
-('Dimsum Wortel', 'dimsum', 'wortel', 0, 1),
-('Dimsum Jamur', 'dimsum', 'jamur', 0, 1),
-('Dimsum Keju', 'dimsum', 'keju', 0, 1),
-('Dimsum Crabstick', 'dimsum', 'crabstick', 0, 1),
-('Lumpia Basah', 'dimsum', 'lumpia', 0, 1),
+-- Delete existing menu products to avoid conflicts (we'll re-insert with correct data)
+DELETE FROM products WHERE name IN (
+    'Dimsum Udang', 'Dimsum Wortel', 'Dimsum Jamur', 'Dimsum Keju', 'Dimsum Crabstick', 'Lumpia Basah',
+    'Gyoza Kukus Reguler', 'Gyoza Kukus Kenyang', 'Gyoza Goreng Reguler', 'Gyoza Goreng Kenyang',
+    'Wonton Kuah', 'Wonton Goreng', 'Paket Reguler', 'Paket Kenyang', 'Dimsum Mentai', 'Gyoza Mentai'
+);
 
--- Gyoza
-('Gyoza Kukus Reguler', 'gyoza', 'kukus_reguler', 10000, 4),
-('Gyoza Kukus Kenyang', 'gyoza', 'kukus_kenyang', 20000, 10),
-('Gyoza Goreng Reguler', 'gyoza', 'goreng_reguler', 10000, 4),
-('Gyoza Goreng Kenyang', 'gyoza', 'goreng_kenyang', 20000, 10),
-
--- Wonton
-('Wonton Kuah', 'wonton', 'kuah', 10000, 8),
-('Wonton Goreng', 'wonton', 'goreng', 10000, 8),
-
--- Paket
-('Paket Reguler', 'paket', 'reguler', 10000, 3),
-('Paket Kenyang', 'paket', 'kenyang', 20000, 7),
-('Dimsum Mentai', 'paket', 'dimsum_mentai', 30000, 6),
-('Gyoza Mentai', 'paket', 'gyoza_mentai', 25000, 7)
-ON CONFLICT DO NOTHING;
+-- Insert products based on menu - using DO block to handle different schemas
+DO $$
+DECLARE
+    has_base_price BOOLEAN;
+BEGIN
+    SELECT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'products' AND column_name = 'base_price') INTO has_base_price;
+    
+    IF has_base_price THEN
+        -- Schema with base_price column
+        INSERT INTO products (name, category, variant, price, base_price, pcs_per_portion) VALUES
+        ('Dimsum Udang', 'dimsum', 'udang', 0, 0, 1),
+        ('Dimsum Wortel', 'dimsum', 'wortel', 0, 0, 1),
+        ('Dimsum Jamur', 'dimsum', 'jamur', 0, 0, 1),
+        ('Dimsum Keju', 'dimsum', 'keju', 0, 0, 1),
+        ('Dimsum Crabstick', 'dimsum', 'crabstick', 0, 0, 1),
+        ('Lumpia Basah', 'dimsum', 'lumpia', 0, 0, 1),
+        ('Gyoza Kukus Reguler', 'gyoza', 'kukus_reguler', 10000, 10000, 4),
+        ('Gyoza Kukus Kenyang', 'gyoza', 'kukus_kenyang', 20000, 20000, 10),
+        ('Gyoza Goreng Reguler', 'gyoza', 'goreng_reguler', 10000, 10000, 4),
+        ('Gyoza Goreng Kenyang', 'gyoza', 'goreng_kenyang', 20000, 20000, 10),
+        ('Wonton Kuah', 'wonton', 'kuah', 10000, 10000, 8),
+        ('Wonton Goreng', 'wonton', 'goreng', 10000, 10000, 8),
+        ('Paket Reguler', 'paket', 'reguler', 10000, 10000, 3),
+        ('Paket Kenyang', 'paket', 'kenyang', 20000, 20000, 7),
+        ('Dimsum Mentai', 'paket', 'dimsum_mentai', 30000, 30000, 6),
+        ('Gyoza Mentai', 'paket', 'gyoza_mentai', 25000, 25000, 7);
+    ELSE
+        -- Schema without base_price column
+        INSERT INTO products (name, category, variant, price, pcs_per_portion) VALUES
+        ('Dimsum Udang', 'dimsum', 'udang', 0, 1),
+        ('Dimsum Wortel', 'dimsum', 'wortel', 0, 1),
+        ('Dimsum Jamur', 'dimsum', 'jamur', 0, 1),
+        ('Dimsum Keju', 'dimsum', 'keju', 0, 1),
+        ('Dimsum Crabstick', 'dimsum', 'crabstick', 0, 1),
+        ('Lumpia Basah', 'dimsum', 'lumpia', 0, 1),
+        ('Gyoza Kukus Reguler', 'gyoza', 'kukus_reguler', 10000, 4),
+        ('Gyoza Kukus Kenyang', 'gyoza', 'kukus_kenyang', 20000, 10),
+        ('Gyoza Goreng Reguler', 'gyoza', 'goreng_reguler', 10000, 4),
+        ('Gyoza Goreng Kenyang', 'gyoza', 'goreng_kenyang', 20000, 10),
+        ('Wonton Kuah', 'wonton', 'kuah', 10000, 8),
+        ('Wonton Goreng', 'wonton', 'goreng', 10000, 8),
+        ('Paket Reguler', 'paket', 'reguler', 10000, 3),
+        ('Paket Kenyang', 'paket', 'kenyang', 20000, 7),
+        ('Dimsum Mentai', 'paket', 'dimsum_mentai', 30000, 6),
+        ('Gyoza Mentai', 'paket', 'gyoza_mentai', 25000, 7);
+    END IF;
+END $$;
 
 -- ============================================
 -- 3. STOCK MOVEMENTS TABLE

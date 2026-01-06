@@ -8,12 +8,14 @@
 DO $$ 
 BEGIN
     -- Add new role values
-    IF NOT EXISTS (SELECT 1 FROM pg_enum WHERE enumlabel = 'crew_produksi' AND enumtypid = 'user_role'::regtype) THEN
-        ALTER TYPE user_role ADD VALUE 'crew_produksi';
+    -- Staff Produksi = yang bagian produksi (input stok)
+    IF NOT EXISTS (SELECT 1 FROM pg_enum WHERE enumlabel = 'staff_produksi' AND enumtypid = 'user_role'::regtype) THEN
+        ALTER TYPE user_role ADD VALUE 'staff_produksi';
     END IF;
     
-    IF NOT EXISTS (SELECT 1 FROM pg_enum WHERE enumlabel = 'staff_booth' AND enumtypid = 'user_role'::regtype) THEN
-        ALTER TYPE user_role ADD VALUE 'staff_booth';
+    -- Crew Outlet = yang jaga outlet (input penjualan)
+    IF NOT EXISTS (SELECT 1 FROM pg_enum WHERE enumlabel = 'crew_outlet' AND enumtypid = 'user_role'::regtype) THEN
+        ALTER TYPE user_role ADD VALUE 'crew_outlet';
     END IF;
 END $$;
 

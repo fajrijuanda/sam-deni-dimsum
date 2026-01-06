@@ -184,8 +184,38 @@ CREATE TABLE IF NOT EXISTS stock_movements (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Indexes
-CREATE INDEX IF NOT EXISTS idx_stock_movements_outlet ON stock_movements(outlet_id);
+-- Add missing columns to stock_movements if table already exists
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'outlet_id') THEN
+        ALTER TABLE stock_movements ADD COLUMN outlet_id UUID;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'product_id') THEN
+        ALTER TABLE stock_movements ADD COLUMN product_id UUID;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'movement_type') THEN
+        ALTER TABLE stock_movements ADD COLUMN movement_type TEXT;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'stock_movements' AND column_name = 'synced_to_sheets') THEN
+        ALTER TABLE stock_movements ADD COLUMN synced_to_sheets BOOLEAN DEFAULT FALSE;
+    END IF;
+END $$;
+
+-- Indexes (only create if column exists)
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.columns 
+               WHERE table_name = 'stock_movements' AND column_name = 'outlet_id') THEN
+        CREATE INDEX IF NOT EXISTS idx_stock_movements_outlet ON stock_movements(outlet_id);
+    END IF;
+END $$;
 CREATE INDEX IF NOT EXISTS idx_stock_movements_date ON stock_movements(date);
 CREATE INDEX IF NOT EXISTS idx_stock_movements_type ON stock_movements(movement_type);
 CREATE INDEX IF NOT EXISTS idx_stock_movements_sync ON stock_movements(synced_to_sheets);

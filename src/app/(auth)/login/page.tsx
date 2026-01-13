@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import logo from "../../../../public/logo.png"
@@ -18,6 +18,19 @@ export default function LoginPage() {
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (session) {
+                const role = session.user.user_metadata?.role || 'staff'
+                if (role === 'admin') router.push("/admin")
+                else if (role === 'staff') router.push("/staff/sales")
+                else router.push("/mitra")
+            }
+        }
+        checkSession()
+    }, [])
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()

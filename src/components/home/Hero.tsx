@@ -53,7 +53,7 @@ export function Hero() {
                         <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-yellow-500 hover:bg-yellow-400 text-red-900 font-bold shadow-xl hover:shadow-yellow-500/20 transition-all">
                             <Link href="#products">Lihat Menu</Link>
                         </Button>
-                        <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full border-2 border-white/20 hover:bg-white/10 text-white hover:text-white backdrop-blur-sm">
+                        <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full border-2 border-white text-white bg-white/5 hover:bg-white hover:text-red-900 backdrop-blur-sm transition-all shadow-lg">
                             <Link href="#features">Pelajari Sistem</Link>
                         </Button>
                     </div>

@@ -60,16 +60,31 @@ export function Partnership() {
                             id: '2',
                             name: 'Mitra Outlet',
                             price: 7500000,
-                            description: 'Paket semi-permanen untuk foodcourt atau teras minimarket.',
+                            description: 'Paket semi-permanen dengan sistem bagi hasil 30% dari omset bulanan.',
                             features: [
                                 'Gerobak Premium (Kayu/Besi)',
                                 'Peralatan Masak Grade A',
                                 'Bahan Baku Awal 250 Porsi',
                                 'Neon Box Branding',
-                                'Seragam & Tablet Kasir'
+                                'Sharing Profit 30% Omset/Bulan'
                             ],
-                            status: 'full',
+                            status: 'available',
                             is_popular: false
+                        },
+                        {
+                            id: '3',
+                            name: 'Mitra Investasi',
+                            price: 10000000,
+                            description: 'Investasi pasif dengan return pasti 10% per bulan selama kontrak 2 tahun.',
+                            features: [
+                                'Return 10% per Bulan (Fixed)',
+                                'Kontrak Kerjasama 2 Tahun',
+                                'Laporan Keuangan Transparan',
+                                'Tanpa Kelola Operasional',
+                                'Akses Investor Dashboard'
+                            ],
+                            status: 'available',
+                            is_popular: true
                         }
                     ])
                 }
@@ -122,8 +137,8 @@ export function Partnership() {
 
                                     <Button
                                         className={`w-full h-12 rounded-xl font-bold text-base shadow-lg transition-all ${pkg.status === 'available'
-                                                ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-200'
-                                                : 'bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-100 shadow-none'
+                                            ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-200'
+                                            : 'bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-100 shadow-none'
                                             }`}
                                         disabled={pkg.status !== 'available'}
                                         asChild={pkg.status === 'available'}

@@ -7,6 +7,7 @@ export interface Toast {
   description?: string;
   action?: React.ReactNode;
   variant?: "default" | "destructive";
+  className?: string;
 }
 
 let listeners: ((toasts: Toast[]) => void)[] = [];

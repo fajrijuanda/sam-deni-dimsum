@@ -1,0 +1,31 @@
+# Supabase Configuration
+
+[project]
+id = "nweefrfsacclrwrrwrcn"
+name = "sam-deni-dimsum"
+
+[db]
+# Port to use for the local database URL
+port = 54322
+
+[db.pooler]
+enabled = false
+port = 54329
+pool_mode = "transaction"
+
+[studio]
+enabled = true
+port = 54323
+
+[api]
+enabled = true
+port = 54321
+
+[auth]
+enabled = true
+port = 9999
+
+# Remote DB push settings
+[db.migrations]
+# Schema to apply migrations to
+schema = ["public"]

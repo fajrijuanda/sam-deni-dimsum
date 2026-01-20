@@ -24,25 +24,9 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { createClient } from "@/lib/supabase-browser"
-
-interface Product {
-    id: string
-    name: string
-    category: string
-    variant: string
-    price: number
-    pcsPerPortion: number
-    isActive: boolean
-}
-
-const categories = [
-    { value: "all", label: "Semua Kategori" },
-    { value: "paket", label: "Paket" },
-    { value: "gyoza", label: "Gyoza" },
-    { value: "wonton", label: "Wonton" },
-    { value: "dimsum", label: "Dimsum (Varian)" },
-]
-
+import { MENU_CATEGORIES } from "@/lib/constants"
+import { formatCurrency, getCategoryLabel, getCategoryBadgeStyle } from "@/lib/formatting"
+import type { Product, ProductFormData } from "@/lib/types"
 export default function AdminMenuPage() {
     const supabase = createClient()
     const [products, setProducts] = useState<Product[]>([])
@@ -96,27 +80,9 @@ export default function AdminMenuPage() {
         }
     }
 
-    const formatCurrency = (amount: number) => {
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-        }).format(amount)
-    }
-
-    const getCategoryLabel = (category: string) => {
-        return categories.find(c => c.value === category)?.label || category
-    }
-
     const getCategoryBadge = (category: string) => {
-        const colors: Record<string, string> = {
-            paket: "bg-red-100 text-red-700 border-red-200",
-            gyoza: "bg-amber-100 text-amber-700 border-amber-200",
-            wonton: "bg-blue-100 text-blue-700 border-blue-200",
-            dimsum: "bg-green-100 text-green-700 border-green-200",
-        }
         return (
-            <Badge variant="outline" className={colors[category] || "bg-slate-100 text-slate-700 border-slate-200"}>
+            <Badge variant="outline" className={getCategoryBadgeStyle(category)}>
                 {getCategoryLabel(category)}
             </Badge>
         )
@@ -355,7 +321,7 @@ export default function AdminMenuPage() {
                                         <SelectValue placeholder="Pilih Kategori" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {categories.filter(c => c.value !== 'all').map(cat => (
+                                        {MENU_CATEGORIES.filter(c => c.value !== 'all').map(cat => (
                                             <SelectItem key={cat.value} value={cat.value}>
                                                 {cat.label}
                                             </SelectItem>
@@ -466,7 +432,7 @@ export default function AdminMenuPage() {
                             </div>
                         </SelectTrigger>
                         <SelectContent>
-                            {categories.map(cat => (
+                            {MENU_CATEGORIES.map(cat => (
                                 <SelectItem key={cat.value} value={cat.value}>
                                     {cat.label}
                                 </SelectItem>

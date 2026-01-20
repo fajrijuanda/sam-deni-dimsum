@@ -80,11 +80,23 @@ const items = [
         icon: BarChart3,
         section: "admin"
     },
+    {
+        title: "Rekap Presensi",
+        url: "/admin/presensi",
+        icon: ClipboardList,
+        section: "admin"
+    },
     // Staff Produksi Section
     {
         title: "Input Stok",
         url: "/staff/stok",
         icon: Package,
+        section: "staff"
+    },
+    {
+        title: "Presensi",
+        url: "/staff/presensi",
+        icon: ClipboardList,
         section: "staff"
     },
     // Crew Outlet Section
@@ -93,6 +105,25 @@ const items = [
         url: "/crew/penjualan",
         icon: ClipboardList,
         section: "crew"
+    },
+    {
+        title: "Presensi",
+        url: "/crew/presensi",
+        icon: ClipboardList,
+        section: "crew"
+    },
+    // Mitra Section
+    {
+        title: "Dashboard",
+        url: "/mitra",
+        icon: Home,
+        section: "mitra"
+    },
+    {
+        title: "History Pencairan",
+        url: "/mitra/pencairan",
+        icon: ClipboardList,
+        section: "mitra"
     },
     {
         title: "Settings",

@@ -18,37 +18,31 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) =>
-            request.cookies.set(name, value)
+            request.cookies.set(name, value),
           );
           response = NextResponse.next({
             request,
           });
           cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
+            response.cookies.set(name, value, options),
           );
         },
       },
-    }
+    },
   );
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // DEBUG: Log session status for troubleshooting
-  console.log("[Middleware] Path:", request.nextUrl.pathname);
-  console.log("[Middleware] User:", user ? user.email : "NO USER");
-
   // Basic Protection
   const protectedPaths = ["/admin", "/staff", "/mitra"];
   const isProtected = protectedPaths.some((path) =>
-    request.nextUrl.pathname.startsWith(path)
+    request.nextUrl.pathname.startsWith(path),
   );
 
   if (isProtected && !user) {
-    console.log("[Middleware] BLOCKED - No user, redirecting to /login");
-    // If no keys are set (dev mode without real Supabase), we might fail hard here.
-    // Ideally redirect to login.
+    // Redirect unauthenticated users to login
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

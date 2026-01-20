@@ -14,8 +14,17 @@ import {
 import { GlassCard } from "@/components/shared/GlassCard"
 import { Button } from "@/components/ui/button"
 import { formatDate } from "@/lib/formatting"
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-// Mock data untuk demo
+// Mock data items
 const MOCK_STOCK_SUMMARY = {
     todayMasuk: 150,
     todayKeluar: 120,
@@ -29,6 +38,8 @@ const RECENT_MOVEMENTS = [
     { id: "3", type: "kembali", product: "Wonton Goreng", qty: 5, date: "2026-01-20" },
     { id: "4", type: "masuk", product: "Paket Kenyang", qty: 40, date: "2026-01-19" },
     { id: "5", type: "keluar", product: "Dimsum Keju", qty: 25, date: "2026-01-19" },
+    { id: "6", type: "masuk", product: "Lumpia Kulit Tahu", qty: 30, date: "2026-01-19" },
+    { id: "7", type: "keluar", product: "Ekado Puyuh", qty: 20, date: "2026-01-19" },
 ]
 
 const getMovementStyle = (type: string) => {
@@ -69,7 +80,7 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                 </div>
 
                 <Link href={baseUrl}>
-                    <Button className="w-full md:w-auto bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-md">
+                    <Button size="lg" className="w-full md:w-auto bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-md">
                         <Package className="w-4 h-4 mr-2" />
                         {role === 'admin' ? 'Kelola Inventory' : 'Input Stok'}
                     </Button>
@@ -78,83 +89,90 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
 
             {/* Stats Cards - Responsive Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <GlassCard className="p-4 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <TrendingUp className="w-5 h-5" />
-                        </div>
+                <GlassCard className="p-6 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Stok Masuk</p>
-                            <p className="text-2xl font-bold">{stats.todayMasuk} pcs</p>
+                            <p className="text-sm opacity-80 font-medium mb-1">Stok Masuk</p>
+                            <p className="text-3xl font-bold">{stats.todayMasuk}</p>
+                        </div>
+                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                            <TrendingUp className="w-6 h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <TrendingDown className="w-5 h-5" />
-                        </div>
+                <GlassCard className="p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Stok Keluar</p>
-                            <p className="text-2xl font-bold">{stats.todayKeluar} pcs</p>
+                            <p className="text-sm opacity-80 font-medium mb-1">Stok Keluar</p>
+                            <p className="text-3xl font-bold">{stats.todayKeluar}</p>
+                        </div>
+                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                            <TrendingDown className="w-6 h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-gradient-to-br from-amber-500 to-amber-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <RotateCcw className="w-5 h-5" />
-                        </div>
+                <GlassCard className="p-6 bg-gradient-to-br from-amber-500 to-amber-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Stok Kembali</p>
-                            <p className="text-2xl font-bold">{stats.todayKembali} pcs</p>
+                            <p className="text-sm opacity-80 font-medium mb-1">Stok Kembali</p>
+                            <p className="text-3xl font-bold">{stats.todayKembali}</p>
+                        </div>
+                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                            <RotateCcw className="w-6 h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                            <BarChart3 className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                        </div>
+                <Card className="border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <CardContent className="p-6 flex items-center justify-between">
                         <div>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Minggu Ini</p>
-                            <p className="text-2xl font-bold text-slate-900 dark:text-white">{stats.weekTotal} pcs</p>
+                            <p className="text-sm text-slate-500 font-medium mb-1">Total Minggu Ini</p>
+                            <p className="text-3xl font-bold text-slate-800">{stats.weekTotal}</p>
                         </div>
-                    </div>
-                </GlassCard>
+                        <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+                            <BarChart3 className="w-6 h-6 text-purple-600" />
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
             {/* Recent Movements Section */}
-            <GlassCard className="p-0 overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div className="p-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
+            <Card className="border-slate-200 shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between border-b bg-slate-50/50 pb-4">
                     <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-red-500" />
-                        <h2 className="font-semibold text-lg text-slate-900 dark:text-white">Pergerakan Terbaru</h2>
+                        <div className="p-2 bg-red-100 rounded-lg">
+                            <Calendar className="w-5 h-5 text-red-600" />
+                        </div>
+                        <div>
+                            <CardTitle className="text-lg font-bold text-slate-800">Pergerakan Terbaru</CardTitle>
+                            <p className="text-sm text-slate-500">History pergerakan stok hari ini</p>
+                        </div>
                     </div>
-                    <Link href={baseUrl} className="text-sm font-medium text-red-600 hover:text-red-700 hover:underline flex items-center gap-1 transition-colors">
-                        Lihat Semua <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </div>
+                    <Button variant="ghost" className="text-red-600 hover:text-red-700 hover:bg-red-50" asChild>
+                        <Link href={baseUrl}>
+                            Lihat Semua <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
+                    </Button>
+                </CardHeader>
 
                 {/* Mobile View (List) */}
-                <div className="md:hidden divide-y divide-slate-100 dark:divide-slate-700">
+                <div className="md:hidden divide-y divide-slate-100">
                     {movements.map((movement) => {
                         const style = getMovementStyle(movement.type)
                         const Icon = style.icon
                         return (
                             <div
                                 key={movement.id}
-                                className="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                                className="flex items-center justify-between p-4"
                             >
                                 <div className="flex items-center gap-3">
                                     <div className={`w-10 h-10 rounded-lg ${style.bg} flex items-center justify-center shrink-0`}>
                                         <Icon className={`w-5 h-5 ${style.text}`} />
                                     </div>
                                     <div>
-                                        <p className="font-medium text-sm text-slate-900 dark:text-white">{movement.product}</p>
+                                        <p className="font-medium text-sm text-slate-900">{movement.product}</p>
                                         <p className="text-xs text-slate-500">{formatDate(movement.date)}</p>
                                     </div>
                                 </div>
@@ -168,45 +186,43 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
 
                 {/* Desktop View (Table) */}
                 <div className="hidden md:block">
-                    <table className="w-full text-sm text-left">
-                        <thead className="text-xs text-slate-500 uppercase bg-slate-50 dark:bg-slate-700/50">
-                            <tr>
-                                <th className="px-6 py-3">Waktu</th>
-                                <th className="px-6 py-3">Tipe</th>
-                                <th className="px-6 py-3">Produk</th>
-                                <th className="px-6 py-3 text-right">Jumlah</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[200px]">Waktu</TableHead>
+                                <TableHead className="w-[150px]">Tipe</TableHead>
+                                <TableHead>Produk</TableHead>
+                                <TableHead className="text-right">Jumlah</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
                             {movements.map((movement) => {
                                 const style = getMovementStyle(movement.type)
                                 const Icon = style.icon
                                 return (
-                                    <tr key={movement.id} className="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                                        <td className="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    <TableRow key={movement.id} className="cursor-pointer hover:bg-slate-50">
+                                        <TableCell className="font-medium text-slate-600">
                                             {formatDate(movement.date)}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-2">
-                                                <div className={`w-6 h-6 rounded-full ${style.bg} flex items-center justify-center`}>
-                                                    <Icon className={`w-3 h-3 ${style.text}`} />
-                                                </div>
-                                                <span className={`capitalize ${style.text} font-medium`}>{movement.type}</span>
+                                        </TableCell>
+                                        <TableCell>
+                                            <div className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-semibold ${style.bg} ${style.text}`}>
+                                                <Icon className="w-3 h-3" />
+                                                <span className="capitalize">{movement.type}</span>
                                             </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                                        </TableCell>
+                                        <TableCell className="text-slate-900 font-medium">
                                             {movement.product}
-                                        </td>
-                                        <td className={`px-6 py-4 text-right font-bold ${style.text}`}>
+                                        </TableCell>
+                                        <TableCell className={`text-right font-bold ${style.text}`}>
                                             {movement.type === "keluar" ? "-" : "+"}{movement.qty}
-                                        </td>
-                                    </tr>
+                                        </TableCell>
+                                    </TableRow>
                                 )
                             })}
-                        </tbody>
-                    </table>
+                        </TableBody>
+                    </Table>
                 </div>
-            </GlassCard>
+            </Card>
         </div>
     )
 }

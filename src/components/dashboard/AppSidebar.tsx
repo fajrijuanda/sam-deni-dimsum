@@ -178,7 +178,7 @@ export function AppSidebar({ userRole }: { userRole?: string | null }) {
         <Sidebar
             variant="sidebar"
             collapsible="icon"
-            className="border-none bg-gradient-to-b from-[#dc2626] via-[#7f1d1d] to-[#2b0808]"
+            className="border-none bg-gradient-to-b from-[#dc2626] via-[#7f1d1d] to-[#2b0808] text-white"
         >
             {/* Header with Logo */}
             <SidebarHeader className={cn(

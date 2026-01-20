@@ -145,10 +145,22 @@ const items = [
     },
 ]
 
-export function AppSidebar() {
+export function AppSidebar({ userRole }: { userRole?: string | null }) {
     const pathname = usePathname()
     const { state } = useSidebar()
     const isCollapsed = state === "collapsed"
+
+    const filteredItems = items.filter(item => {
+        if (!userRole) return false
+
+        // Admin sees admin section and settings
+        if (userRole === 'admin') {
+            return item.section === 'admin' || item.section === 'settings'
+        }
+
+        // Other roles see their specific section and settings
+        return item.section === userRole || item.section === 'settings'
+    })
 
     return (
         <Sidebar
@@ -181,7 +193,7 @@ export function AppSidebar() {
                 <SidebarGroup>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => {
+                            {filteredItems.map((item) => {
                                 const isActive = pathname === item.url ||
                                     (item.url !== "/admin" && pathname.startsWith(item.url))
 

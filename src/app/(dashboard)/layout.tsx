@@ -47,7 +47,7 @@ export default function DashboardLayout({
         <SidebarProvider>
             {/* Sidebar - hidden on mobile for mobile taskbar roles */}
             <div className={useMobileTaskbar ? "hidden md:block" : ""}>
-                <AppSidebar />
+                <AppSidebar userRole={userRole} />
             </div>
 
             <main className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-white to-red-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-red-950/20">

@@ -88,51 +88,51 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
             </div>
 
             {/* Stats Cards - Responsive Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <GlassCard className="p-6 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
-                    <div className="flex items-center justify-between">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-sm opacity-80 font-medium mb-1">Stok Masuk</p>
-                            <p className="text-3xl font-bold">{stats.todayMasuk}</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium mb-1">Stok Masuk</p>
+                            <p className="text-xl md:text-3xl font-bold">{stats.todayMasuk}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                            <TrendingUp className="w-6 h-6" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <TrendingUp className="w-4 h-4 md:w-6 md:h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
-                    <div className="flex items-center justify-between">
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-sm opacity-80 font-medium mb-1">Stok Keluar</p>
-                            <p className="text-3xl font-bold">{stats.todayKeluar}</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium mb-1">Stok Keluar</p>
+                            <p className="text-xl md:text-3xl font-bold">{stats.todayKeluar}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                            <TrendingDown className="w-6 h-6" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <TrendingDown className="w-4 h-4 md:w-6 md:h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-6 bg-gradient-to-br from-amber-500 to-amber-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
-                    <div className="flex items-center justify-between">
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-amber-500 to-amber-600 text-white border-none shadow-lg transform transition-all hover:-translate-y-1">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-sm opacity-80 font-medium mb-1">Stok Kembali</p>
-                            <p className="text-3xl font-bold">{stats.todayKembali}</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium mb-1">Stok Kembali</p>
+                            <p className="text-xl md:text-3xl font-bold">{stats.todayKembali}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                            <RotateCcw className="w-6 h-6" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <RotateCcw className="w-4 h-4 md:w-6 md:h-6" />
                         </div>
                     </div>
                 </GlassCard>
 
                 <Card className="border-slate-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex items-center justify-between">
+                    <CardContent className="p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-2 h-full">
                         <div>
-                            <p className="text-sm text-slate-500 font-medium mb-1">Total Minggu Ini</p>
-                            <p className="text-3xl font-bold text-slate-800">{stats.weekTotal}</p>
+                            <p className="text-xs md:text-sm text-slate-500 font-medium mb-1">Total Minggu Ini</p>
+                            <p className="text-xl md:text-3xl font-bold text-slate-800">{stats.weekTotal}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                            <BarChart3 className="w-6 h-6 text-purple-600" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-purple-100 flex items-center justify-center self-end md:self-center">
+                            <BarChart3 className="w-4 h-4 md:w-6 md:h-6 text-purple-600" />
                         </div>
                     </CardContent>
                 </Card>

@@ -55,53 +55,53 @@ export default function CrewDashboard() {
             </div>
 
             {/* Stats Cards - Responsive Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <GlassCard className="p-4 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <DollarSign className="w-5 h-5" />
-                        </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-green-500 to-green-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Penjualan Hari Ini</p>
-                            <p className="text-lg font-bold">{formatCurrency(stats.todaySales)}</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium">Penjualan</p>
+                            <p className="text-lg md:text-lg font-bold truncate">{formatCurrency(stats.todaySales)}</p>
+                        </div>
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <DollarSign className="w-4 h-4 md:w-5 md:h-5" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <Package className="w-5 h-5" />
-                        </div>
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Item Terjual</p>
-                            <p className="text-2xl font-bold">{stats.todayItems} pcs</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium">Item Terjual</p>
+                            <p className="text-xl md:text-2xl font-bold">{stats.todayItems} pcs</p>
+                        </div>
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <Package className="w-4 h-4 md:w-5 md:h-5" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-gradient-to-br from-purple-500 to-purple-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <TrendingUp className="w-5 h-5" />
-                        </div>
+                <GlassCard className="p-4 md:p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white border-none shadow-lg transform transition-all hover:scale-[1.02]">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
-                            <p className="text-xs opacity-80 font-medium">Total Minggu Ini</p>
-                            <p className="text-lg font-bold">{formatCurrency(stats.weekSales)}</p>
+                            <p className="text-xs md:text-sm opacity-80 font-medium">Mingguan</p>
+                            <p className="text-lg md:text-lg font-bold truncate">{formatCurrency(stats.weekSales)}</p>
+                        </div>
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/20 flex items-center justify-center self-end md:self-center">
+                            <TrendingUp className="w-4 h-4 md:w-5 md:h-5" />
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transform transition-all hover:scale-[1.02]">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                            <ShoppingCart className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                        </div>
-                        <div>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Produk Terlaris</p>
-                            <p className="text-sm font-bold text-slate-900 dark:text-white truncate max-w-[120px]" title={stats.topProduct}>
+                <GlassCard className="p-4 md:p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transform transition-all hover:scale-[1.02]">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                        <div className="min-w-0">
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Terlaris</p>
+                            <p className="text-sm font-bold text-slate-900 dark:text-white truncate" title={stats.topProduct}>
                                 {stats.topProduct}
                             </p>
+                        </div>
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center self-end md:self-center">
+                            <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 text-amber-600 dark:text-amber-400" />
                         </div>
                     </div>
                 </GlassCard>

@@ -60,13 +60,13 @@ export function Partnership() {
                             id: '2',
                             name: 'Mitra Outlet',
                             price: 7500000,
-                            description: 'Paket semi-permanen dengan sistem bagi hasil 30% dari omset bulanan.',
+                            description: 'Investasi outlet auto-pilot (terima beres) dengan bagi hasil 30% dari omset dan kontrak 2 tahun.',
                             features: [
-                                'Gerobak Premium (Kayu/Besi)',
-                                'Peralatan Masak Grade A',
-                                'Bahan Baku Awal 250 Porsi',
-                                'Neon Box Branding',
-                                'Sharing Profit 30% Omset/Bulan'
+                                'Sistem Auto-Pilot (Terima Beres)',
+                                'Kontrak Kerjasama 2 Tahun',
+                                'Sharing Profit 30% dari Omset',
+                                'Gerobak & Aset Milik Mitra',
+                                'Pengelolaan SDM oleh Pusat'
                             ],
                             status: 'available',
                             is_popular: false

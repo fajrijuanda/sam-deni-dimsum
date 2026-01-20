@@ -1,14 +1,13 @@
 -- Update Mitra Outlet description regarding return
 UPDATE public.partnership_packages
-SET description = 'Paket semi-permanen dengan sistem bagi hasil 30% dari omset bulanan.',
+SET description = 'Investasi outlet auto-pilot (terima beres) dengan bagi hasil 30% dari omset dan kontrak 2 tahun.',
     features = '[
-        "Gerobak/Booth Premium",
-        "Peralatan Masak Grade A",
-        "Bahan Baku Awal 250 Porsi",
-        "Neon Box Branding",
-        "Seragam Karyawan (2pcs)",
-        "Full Akses SDMS + Tablet Kasir",
-        "Sharing Profit 30% dari Omset/Bulan"
+        "Sistem Auto-Pilot (Terima Beres)",
+        "Kontrak Kerjasama 2 Tahun",
+        "Sharing Profit 30% dari Omset",
+        "Gerobak Premium & Aset Milik Mitra",
+        "Pengelolaan SDM oleh Pusat",
+        "Laporan Penjualan Real-time"
     ]'::jsonb
 WHERE name = 'Mitra Outlet';
 

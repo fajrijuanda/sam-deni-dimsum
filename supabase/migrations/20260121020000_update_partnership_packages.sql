@@ -1,6 +1,7 @@
 -- Update Mitra Outlet description regarding return
 UPDATE public.partnership_packages
 SET description = 'Investasi outlet auto-pilot (terima beres) dengan bagi hasil 30% dari omset dan kontrak 2 tahun.',
+    status = 'full',
     features = '[
         "Sistem Auto-Pilot (Terima Beres)",
         "Kontrak Kerjasama 2 Tahun",

@@ -68,7 +68,7 @@ export function Partnership() {
                                 'Gerobak & Aset Milik Mitra',
                                 'Pengelolaan SDM oleh Pusat'
                             ],
-                            status: 'available',
+                            status: 'full',
                             is_popular: false
                         },
                         {

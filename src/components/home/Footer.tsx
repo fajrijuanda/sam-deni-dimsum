@@ -1,0 +1,63 @@
+import Link from "next/link"
+import Image from "next/image"
+import { Facebook, Instagram, Twitter, MessageCircle } from "lucide-react"
+
+export function Footer() {
+    return (
+        <footer id="footer" className="bg-slate-950 text-white pt-20 pb-10 border-t border-white/10">
+            <div className="container mx-auto px-4 md:px-8">
+                <div className="grid md:grid-cols-4 gap-12 mb-16">
+                    {/* Brand */}
+                    <div className="col-span-1 md:col-span-2">
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="relative w-10 h-10">
+                                <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+                            </div>
+                            <span className="font-bold text-2xl">SAM DENI DIMSUM</span>
+                        </div>
+                        <p className="text-slate-400 max-w-sm mb-6 leading-relaxed">
+                            Penyedia dimsum frozen dan siap saji berkualitas premium dengan harga terjangkau. Mitra terpercaya usaha kuliner Anda.
+                        </p>
+                        <div className="flex gap-4">
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                                <Instagram className="w-5 h-5" />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                                <Facebook className="w-5 h-5" />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                                <MessageCircle className="w-5 h-5" />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div>
+                        <h4 className="font-bold text-lg mb-6 text-red-500">Quick Links</h4>
+                        <ul className="space-y-4">
+                            <li><Link href="#" className="text-slate-400 hover:text-white transition-colors">Beranda</Link></li>
+                            <li><Link href="#about" className="text-slate-400 hover:text-white transition-colors">Tentang Kami</Link></li>
+                            <li><Link href="#products" className="text-slate-400 hover:text-white transition-colors">Produk</Link></li>
+                            <li><Link href="/login" className="text-slate-400 hover:text-white transition-colors">Login System</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact */}
+                    <div>
+                        <h4 className="font-bold text-lg mb-6 text-red-500">Hubungi Kami</h4>
+                        <ul className="space-y-4 text-slate-400">
+                            <li>Jl. Dimsum Enak No. 123</li>
+                            <li>Jakarta Selatan, 12345</li>
+                            <li>+62 812-3456-7890</li>
+                            <li>info@samdeni.com</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="border-t border-white/5 pt-8 text-center text-slate-500 text-sm">
+                    <p>&copy; {new Date().getFullYear()} PT Sam Deni Dimsum. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    )
+}

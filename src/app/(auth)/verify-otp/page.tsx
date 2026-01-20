@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, Suspense } from "react"
 import { createClient } from "@supabase/supabase-js"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +14,7 @@ const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-export default function VerifyOtpPage() {
+function VerifyOtpContent() {
     const [token, setToken] = useState("")
     const [loading, setLoading] = useState(false)
     const router = useRouter()
@@ -79,5 +79,13 @@ export default function VerifyOtpPage() {
                 </form>
             </div>
         </div>
+    )
+}
+
+export default function VerifyOtpPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+            <VerifyOtpContent />
+        </Suspense>
     )
 }

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import Image from "next/image"
 import { ScrollReveal } from "./ScrollReveal"
 import { ArrowRight, ChevronDown } from "lucide-react"
@@ -50,11 +49,20 @@ export function Hero() {
 
                 <ScrollReveal delay={600}>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-yellow-500 hover:bg-yellow-400 text-red-900 font-bold shadow-xl hover:shadow-yellow-500/20 transition-all">
-                            <Link href="#products">Lihat Menu</Link>
+                        <Button
+                            size="lg"
+                            className="h-14 px-8 text-lg rounded-full bg-yellow-500 hover:bg-yellow-400 text-red-900 font-bold shadow-xl hover:shadow-yellow-500/20 transition-all"
+                            onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
+                            Lihat Menu
                         </Button>
-                        <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full border-2 border-white text-white bg-white/5 hover:bg-white hover:text-red-900 backdrop-blur-sm transition-all shadow-lg">
-                            <Link href="#features">Pelajari Sistem</Link>
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="h-14 px-8 text-lg rounded-full border-2 border-white text-white bg-white/5 hover:bg-white hover:text-red-900 backdrop-blur-sm transition-all shadow-lg"
+                            onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
+                            Pelajari Sistem
                         </Button>
                     </div>
                 </ScrollReveal>

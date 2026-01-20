@@ -14,7 +14,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList, UtensilsCrossed } from "lucide-react"
+import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList, UtensilsCrossed, Handshake } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Menu items.
@@ -39,19 +39,19 @@ const items = [
         section: "admin"
     },
     {
-        title: "Sales",
+        title: "Penjualan",
         url: "/admin/sales",
         icon: ShoppingCart,
         section: "admin"
     },
     {
-        title: "Inventory",
+        title: "Inventaris",
         url: "/admin/inventory",
         icon: Box,
         section: "admin"
     },
     {
-        title: "User Management",
+        title: "Manajemen Pengguna",
         url: "/admin/users",
         icon: Users,
         section: "admin"
@@ -59,7 +59,7 @@ const items = [
     {
         title: "Manajemen Mitra",
         url: "/admin/mitra",
-        icon: Users,
+        icon: Handshake,
         section: "admin"
     },
     {
@@ -75,7 +75,7 @@ const items = [
         section: "admin"
     },
     {
-        title: "Analytics",
+        title: "Analitik",
         url: "/admin/analytics",
         icon: BarChart3,
         section: "admin"
@@ -150,7 +150,7 @@ const items = [
         section: "mitra"
     },
     {
-        title: "Settings",
+        title: "Pengaturan",
         url: "/settings",
         icon: Settings,
         section: "settings"

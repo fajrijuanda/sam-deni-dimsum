@@ -34,7 +34,7 @@ export function WhatsAppBubble() {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button
-                    className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-xl z-50 flex items-center justify-center animate-bounce duration-[2000ms]"
+                    className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-red-600 hover:bg-red-700 text-white shadow-xl z-50 flex items-center justify-center animate-bounce duration-[2000ms]"
                 >
                     <MessageCircle className="w-8 h-8" />
                 </Button>
@@ -65,7 +65,7 @@ export function WhatsAppBubble() {
                     </div>
                     <Button
                         onClick={handleSend}
-                        className="w-full bg-green-500 hover:bg-green-600 text-white font-bold"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
                         disabled={!name || !message}
                     >
                         Kirium Pesan WA

@@ -1,13 +1,5 @@
-import { Toast, ToastActionElement, ToastProps } from "@/components/ui/toast";
-import { useToast as useToastOriginal } from "@/components/ui/use-toast-original";
-
-// Since I cannot easily create the full shadcn toast complex structure (provider, reducer, etc) from scratch without multiple files (toast.tsx, use-toast.ts),
-// I will create a simplified version that relies on a Toaster component.
-
-// Actually, creating the full shadcn toast is feasible.
-// I'll create a 'use-toast.ts' that mimics the shadcn hook interface.
-
 import { useState, useEffect } from "react";
+import * as React from "react";
 
 export interface Toast {
   id: string;

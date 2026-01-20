@@ -8,6 +8,9 @@ create table if not exists public.outlets (
     primary key (id)
 );
 
+-- Ensure status column exists if table already existed
+alter table public.outlets add column if not exists status text default 'active';
+
 -- Seed some outlets if empty
 insert into public.outlets (name, address, status)
 select 'Sam Deni Dimsum - Pusat (Tebet)', 'Jl. Tebet Raya No. 12', 'active'

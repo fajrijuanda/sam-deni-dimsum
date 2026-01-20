@@ -88,6 +88,12 @@ const items = [
     },
     // Staff Produksi Section
     {
+        title: "Dashboard Stok",
+        url: "/staff",
+        icon: Home,
+        section: "staff"
+    },
+    {
         title: "Input Stok",
         url: "/staff/stok",
         icon: Package,
@@ -100,6 +106,12 @@ const items = [
         section: "staff"
     },
     // Crew Outlet Section
+    {
+        title: "Dashboard Penjualan",
+        url: "/crew",
+        icon: Home,
+        section: "crew"
+    },
     {
         title: "Input Penjualan",
         url: "/crew/penjualan",

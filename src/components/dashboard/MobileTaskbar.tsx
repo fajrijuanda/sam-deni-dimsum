@@ -19,11 +19,13 @@ import type { UserRole, MobileMenuItem } from "@/lib/types"
  */
 const ROLE_MENUS: Record<Exclude<UserRole, "admin">, MobileMenuItem[]> = {
     crew: [
+        { id: "dashboard", label: "Dashboard", href: "/crew", icon: Home },
         { id: "penjualan", label: "Penjualan", href: "/crew/penjualan", icon: ClipboardList },
         { id: "presensi", label: "Presensi", href: "/crew/presensi", icon: UserCheck },
         { id: "settings", label: "Pengaturan", href: "/settings", icon: Settings },
     ],
     staff: [
+        { id: "dashboard", label: "Dashboard", href: "/staff", icon: Home },
         { id: "stok", label: "Input Stok", href: "/staff/stok", icon: Package },
         { id: "presensi", label: "Presensi", href: "/staff/presensi", icon: UserCheck },
         { id: "settings", label: "Pengaturan", href: "/settings", icon: Settings },

@@ -4,32 +4,32 @@ import { Badge } from "@/components/ui/badge"
 
 const products = [
     {
-        name: "Dimsum Udang",
-        desc: "Dimsum best-seller dengan potongan udang utuh yang juicy.",
-        price: "Start 3.000/pcs",
-        color: "bg-red-500",
+        name: "Dimsum Mix",
+        desc: "Kombinasi varian dimsum ayam, udang, dan jamur dalam satu porsi yang memuaskan.",
+        price: "Rp 15.000/porsi",
+        color: "bg-red-600",
         tag: "Best Seller"
     },
     {
-        name: "Gyoza Kukus",
-        desc: "Kulit gyoza lembut dengan isian ayam cincang dan sayuran segar.",
-        price: "Start 2.500/pcs",
-        color: "bg-orange-500",
+        name: "Gyoza Ayam",
+        desc: "Dumpling khas Jepang dengan isian ayam cincang juicy dan sayuran segar.",
+        price: "Rp 15.000/porsi",
+        color: "bg-amber-500",
         tag: "Favorite"
     },
     {
         name: "Wonton Goreng",
-        desc: "Pangsit goreng renyah dengan isian gurih, cocok untuk cemilan.",
-        price: "Start 2.000/pcs",
+        desc: "Pangsit goreng super renyah dengan saus cocolan rahasia yang bikin nagih.",
+        price: "Rp 12.000/porsi",
         color: "bg-yellow-500",
         tag: "Crispy"
     },
     {
-        name: "Lumpia Kulit Tahu",
-        desc: "Balutan kulit tahu premium dengan isian daging tebal.",
-        price: "Start 3.500/pcs",
-        color: "bg-amber-600",
-        tag: "Premium"
+        name: "Frozen Pack",
+        desc: "Kemasan beku praktis siap kukus/goreng untuk persediaan di rumah.",
+        price: "Rp 65.000/pack",
+        color: "bg-blue-600",
+        tag: "Praktis"
     }
 ]
 

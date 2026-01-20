@@ -2,6 +2,6 @@
 
 import { StockDashboard } from "@/components/dashboard/StockDashboard"
 
-export default function StaffPage() {
-    return <StockDashboard role="staff" />
+export default function AdminStockPage() {
+    return <StockDashboard role="admin" />
 }

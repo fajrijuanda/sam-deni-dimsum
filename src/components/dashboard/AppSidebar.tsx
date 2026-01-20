@@ -86,6 +86,12 @@ const items = [
         icon: ClipboardList,
         section: "admin"
     },
+    {
+        title: "Dashboard Stok",
+        url: "/admin/stock",
+        icon: Package,
+        section: "admin"
+    },
     // Staff Produksi Section
     {
         title: "Dashboard Stok",
@@ -135,6 +141,12 @@ const items = [
         title: "History Pencairan",
         url: "/mitra/pencairan",
         icon: ClipboardList,
+        section: "mitra"
+    },
+    {
+        title: "Restock",
+        url: "/mitra/restock",
+        icon: Package,
         section: "mitra"
     },
     {

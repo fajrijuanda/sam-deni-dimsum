@@ -515,6 +515,57 @@ export default function RestockOrdersPage() {
                     )}
                 </DialogContent>
             </Dialog>
+            {/* Create Order Dialog */}
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Buat Pesanan Baru</DialogTitle>
+                        <DialogDescription>
+                            Buat pesanan restock manual untuk mitra rumahan.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="space-y-4 py-4">
+                        <div className="space-y-2">
+                            <Label>Pilih Mitra</Label>
+                            <Select>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Pilih mitra rumahan..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {mitraRumahan.map(m => (
+                                        <SelectItem key={m.id} value={m.id}>{m.name} - {m.city}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label>Pilih Produk</Label>
+                            <div className="border rounded-lg p-4 space-y-4">
+                                {products.map(product => (
+                                    <div key={product.id} className="flex items-center justify-between">
+                                        <div>
+                                            <p className="font-medium text-sm">{product.name}</p>
+                                            <p className="text-xs text-slate-500">{formatCurrency(product.price)}</p>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Button variant="outline" size="icon" className="h-8 w-8">-</Button>
+                                            <span className="w-8 text-center text-sm">0</span>
+                                            <Button variant="outline" size="icon" className="h-8 w-8">+</Button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Batal</Button>
+                        <Button className="bg-red-600 hover:bg-red-700" onClick={() => setIsDialogOpen(false)}>Buat Pesanan</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

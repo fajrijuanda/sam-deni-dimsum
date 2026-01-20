@@ -33,6 +33,7 @@ const ROLE_MENUS: Record<Exclude<UserRole, "admin">, MobileMenuItem[]> = {
     mitra: [
         { id: "dashboard", label: "Dashboard", href: "/mitra", icon: Home },
         { id: "pencairan", label: "Pencairan", href: "/mitra/pencairan", icon: Wallet },
+        { id: "restock", label: "Restock", href: "/mitra/restock", icon: Package },
         { id: "settings", label: "Pengaturan", href: "/settings", icon: Settings },
     ],
 }

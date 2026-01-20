@@ -19,10 +19,11 @@ export function Navbar() {
     }, [])
 
     const navLinks = [
-        { name: "Tentang Kami", href: "#about" },
-        { name: "Produk", href: "#products" },
-        { name: "Teknologi", href: "#features" },
-        { name: "Kontak", href: "#footer" },
+        { name: "Tentang", href: "#about" },
+        { name: "Menu", href: "#products" },
+        { name: "Kemitraan", href: "#partnership" },
+        { name: "Sistem", href: "#features" },
+        { name: "Lokasi", href: "#locations" },
     ]
 
     return (

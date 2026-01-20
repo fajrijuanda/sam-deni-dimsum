@@ -15,8 +15,8 @@ export default function Home() {
       <Hero />
       <About />
       <Products />
-      <Features />
       <Partnership />
+      <Features />
       <Locations />
       <Footer />
       <WhatsAppBubble />

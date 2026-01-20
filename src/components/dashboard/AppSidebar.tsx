@@ -14,7 +14,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList, UtensilsCrossed, Handshake } from "lucide-react"
+import { BarChart3, Box, Calculator, Home, Settings, ShoppingCart, Store, Users, Truck, Package, ClipboardList, UtensilsCrossed, Handshake, Briefcase } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Menu items.
@@ -60,6 +60,12 @@ const items = [
         title: "Manajemen Mitra",
         url: "/admin/mitra",
         icon: Handshake,
+        section: "admin"
+    },
+    {
+        title: "Manajemen Paket",
+        url: "/admin/packages",
+        icon: Briefcase,
         section: "admin"
     },
     {

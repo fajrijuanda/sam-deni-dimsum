@@ -59,7 +59,7 @@ export function Navbar() {
                     ))}
                     <Button asChild className="bg-red-600 hover:bg-red-700 text-white shadow-lg rounded-full px-6">
                         <Link href="/login">
-                            Login System <LogIn className="ml-2 w-4 h-4" />
+                            Login <LogIn className="ml-2 w-4 h-4" />
                         </Link>
                     </Button>
                 </div>
@@ -96,7 +96,7 @@ export function Navbar() {
                             className="mt-2 w-full bg-red-600 text-white font-bold py-3 rounded-xl text-center shadow-lg"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Login System
+                            Login
                         </Link>
                     </div>
                 </div>

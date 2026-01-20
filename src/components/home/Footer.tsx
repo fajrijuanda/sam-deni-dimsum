@@ -19,13 +19,13 @@ export function Footer() {
                             Penyedia dimsum frozen dan siap saji berkualitas premium dengan harga terjangkau. Mitra terpercaya usaha kuliner Anda.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <a href="https://www.instagram.com/samdenidimsum?igsh=MWxsZjVicTV6Mmw0NQ%3D%3D" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <Instagram className="w-5 h-5" />
                             </a>
                             <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <a href="https://wa.me/6285117784817" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <MessageCircle className="w-5 h-5" />
                             </a>
                         </div>
@@ -48,8 +48,8 @@ export function Footer() {
                         <ul className="space-y-4 text-slate-400">
                             <li>Jl. Dimsum Enak No. 123</li>
                             <li>Jakarta Selatan, 12345</li>
-                            <li>+62 812-3456-7890</li>
-                            <li>info@samdeni.com</li>
+                            <li><a href="https://wa.me/6285117784817" className="hover:text-white transition-colors">+62 851-1778-4817</a></li>
+                            <li><a href="mailto:samdenihomemade@gmail.com" className="hover:text-white transition-colors">samdenihomemade@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>

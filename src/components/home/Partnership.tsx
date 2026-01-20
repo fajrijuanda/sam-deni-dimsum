@@ -5,8 +5,17 @@ import { createClient } from "@supabase/supabase-js"
 import { ScrollReveal } from "./ScrollReveal"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Check, X, ShieldAlert } from "lucide-react"
-import { formatCurrency } from "@/lib/formatting"
+import { Check, Loader2 } from "lucide-react"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,7 +34,16 @@ type Package = {
 
 export function Partnership() {
     const [packages, setPackages] = useState<Package[]>([])
-    const [loading, setLoading] = useState(true)
+    const [, setLoading] = useState(true)
+    const [registerOpen, setRegisterOpen] = useState(false)
+    const [selectedPackage, setSelectedPackage] = useState<Package | null>(null)
+
+    // Form States
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [whatsapp, setWhatsapp] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const { toast } = useToast()
 
     useEffect(() => {
         async function fetchData() {
@@ -39,7 +57,7 @@ export function Partnership() {
                 if (!error && data && data.length > 0) {
                     setPackages(data)
                 } else {
-                    // Fallback mock data if DB empty or not migrated yet in this env
+                    // Fallback mock data
                     setPackages([
                         {
                             id: '1',
@@ -97,9 +115,103 @@ export function Partnership() {
         fetchData()
     }, [])
 
+    const handleSelectPackage = (pkg: Package) => {
+        if (pkg.status !== 'available') return
+        setSelectedPackage(pkg)
+        setRegisterOpen(true)
+    }
+
+    const handleSubmitRegistration = async () => {
+        if (!name || !email || !whatsapp || !selectedPackage) {
+            toast({
+                title: "Mohon lengkapi data",
+                description: "Nama, Email, dan WhatsApp wajib diisi.",
+                variant: "destructive"
+            })
+            return
+        }
+
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/auth/register-mitra', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    whatsapp,
+                    packageId: selectedPackage.id,
+                    packageName: selectedPackage.name
+                })
+            })
+
+            const result = await response.json()
+
+            if (!response.ok) {
+                throw new Error(result.error || "Gagal mendaftar")
+            }
+
+            toast({
+                title: "Pendaftaran Berhasil!",
+                description: "Akun Anda telah dibuat. Tunggu verifikasi admin untuk mendapatkan password via email.",
+                variant: "default",
+                className: "bg-green-600 text-white border-none"
+            })
+
+            setRegisterOpen(false)
+            setName("")
+            setEmail("")
+            setWhatsapp("")
+        } catch (error: any) {
+            toast({
+                title: "Gagal Mendaftar",
+                description: error.message,
+                variant: "destructive"
+            })
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
     return (
         <section id="partnership" className="py-20 bg-white relative">
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30 mask-image:linear-gradient(to_bottom,transparent,black,transparent)"></div>
+
+            {/* Registration Dialog */}
+            <Dialog open={registerOpen} onOpenChange={setRegisterOpen}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Daftar {selectedPackage?.name}</DialogTitle>
+                        <DialogDescription>
+                            Isi data diri Anda. Akun akan dibuat otomatis dan menunggu verifikasi admin.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                        <div className="space-y-2">
+                            <Label>Nama Lengkap</Label>
+                            <Input value={name} onChange={e => setName(e.target.value)} placeholder="Nama Sesuai KTP" />
+                        </div>
+                        <div className="space-y-2">
+                            <Label>Email</Label>
+                            <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email@contoh.com" />
+                        </div>
+                        <div className="space-y-2">
+                            <Label>WhatsApp</Label>
+                            <Input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="08xxxxxxxx" />
+                        </div>
+                        <Button onClick={handleSubmitRegistration} disabled={isSubmitting} className="w-full bg-red-600 hover:bg-red-700 mt-2">
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Mendaftarkan...
+                                </>
+                            ) : (
+                                "Daftar Sekarang"
+                            )}
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
 
             <div className="container mx-auto px-4 md:px-8 relative z-10">
                 <ScrollReveal>
@@ -137,19 +249,17 @@ export function Partnership() {
 
                                     <Button
                                         className={`w-full h-12 rounded-xl font-bold text-base shadow-lg transition-all ${pkg.status === 'available'
-                                            ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-200'
-                                            : 'bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-100 shadow-none'
+                                                ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-200'
+                                                : 'bg-slate-100 text-slate-400 cursor-not-allowed hover:bg-slate-100 shadow-none'
                                             }`}
                                         disabled={pkg.status !== 'available'}
-                                        asChild={pkg.status === 'available'}
+                                        onClick={() => handleSelectPackage(pkg)}
                                     >
                                         {pkg.status === 'available' ? (
-                                            <a href={`https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20tertarik%20dengan%20${pkg.name}`} target="_blank" rel="noreferrer">
-                                                Ambil Paket Ini
-                                            </a>
+                                            "Ambil Paket Ini"
                                         ) : (
                                             <span>
-                                                {pkg.status === 'full' ? 'Quota Penuh' : 'Pendaftaran Tutup'}
+                                                {pkg.status === 'full' ? 'Kuota Penuh' : 'Pendaftaran Tutup'}
                                             </span>
                                         )}
                                     </Button>

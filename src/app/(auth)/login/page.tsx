@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import logo from "../../../../public/logo.png"
@@ -130,7 +130,7 @@ export default function LoginPage() {
                         <div className="space-y-2">
                             <div className="flex items-center justify-between">
                                 <Label htmlFor="password" className="text-red-50 font-semibold shadow-sm">Password</Label>
-                                <a href="#" className="text-xs text-red-100 hover:text-white transition-colors underline-offset-4 hover:underline">Forgot password?</a>
+                                <Link href="/forgot-password" className="text-xs text-red-100 hover:text-white transition-colors underline-offset-4 hover:underline">Forgot password?</Link>
                             </div>
                             <Input
                                 id="password"

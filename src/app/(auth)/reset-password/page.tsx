@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -62,7 +63,10 @@ export default function ResetPasswordPage() {
             </div>
 
             <div className="w-full max-w-md p-0 rounded-xl overflow-hidden shadow-2xl shadow-red-950/60 z-10 bg-gradient-to-b from-[#dc2626] via-[#7f1d1d] to-[#2b0808] border-none ring-1 ring-white/5">
-                <div className="space-y-4 flex flex-col items-center pt-12 pb-6 px-4">
+                <div className="space-y-4 flex flex-col items-center pt-12 pb-6 px-4 relative">
+                    <Link href="/" className="absolute top-4 left-4 text-xs text-red-200/60 hover:text-white flex items-center gap-1 transition-colors">
+                        ← Back to Home
+                    </Link>
                     <div className="relative w-48 h-32 mb-4 hover:scale-105 transition-transform duration-300">
                         <Image
                             src={logo}

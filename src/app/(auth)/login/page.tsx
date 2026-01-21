@@ -147,7 +147,7 @@ export default function LoginPage() {
                             {loading ? "Authenticating..." : "Sign In"}
                         </Button>
                         <div className="text-center">
-                            <Link href="/" className="text-sm text-yellow-100 hover:text-white font-medium transition-colors hover:underline flex items-center justify-center gap-2">
+                            <Link href="/" className="text-sm text-white hover:text-white/80 font-medium transition-colors hover:underline flex items-center justify-center gap-2">
                                 ← Back to Home
                             </Link>
                         </div>

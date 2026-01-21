@@ -103,11 +103,6 @@ function VerifyOtpContent() {
                         <Button type="submit" className="w-full bg-white hover:bg-red-50 text-[#C5161D] font-extrabold text-lg h-12 shadow-lg mt-4 transition-all active:scale-[0.98]" disabled={loading}>
                             {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Verifikasi"}
                         </Button>
-                        <div className="text-center">
-                            <Link href="/" className="text-sm text-yellow-100 hover:text-white font-medium transition-colors hover:underline flex items-center justify-center gap-2">
-                                ← Back to Home
-                            </Link>
-                        </div>
                     </form>
                 </div>
 

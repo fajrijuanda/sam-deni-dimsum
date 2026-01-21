@@ -24,6 +24,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { createClient } from "@/lib/supabase-browser"
+import { MenuSkeleton } from "@/components/skeletons/MenuSkeleton"
 import { MENU_CATEGORIES } from "@/lib/constants"
 import { formatCurrency, getCategoryLabel, getCategoryBadgeStyle } from "@/lib/formatting"
 import type { Product, ProductFormData } from "@/lib/types"
@@ -250,6 +251,7 @@ export default function AdminMenuPage() {
                         onClick={() => toggleActive(product.id, product.isActive)}
                         className={product.isActive ? "text-green-600 hover:bg-green-50" : "text-slate-400 hover:bg-slate-50"}
                         title={product.isActive ? "Nonaktifkan" : "Aktifkan"}
+                        aria-label={product.isActive ? "Nonaktifkan menu" : "Aktifkan menu"}
                     >
                         {product.isActive ? <CheckCircle className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
                     </Button>
@@ -258,6 +260,7 @@ export default function AdminMenuPage() {
                         size="icon"
                         onClick={() => handleEdit(product)}
                         className="text-slate-500 hover:text-blue-600 hover:bg-blue-50"
+                        aria-label="Edit menu"
                     >
                         <Pencil className="w-4 h-4" />
                     </Button>
@@ -266,6 +269,7 @@ export default function AdminMenuPage() {
                         size="icon"
                         className="text-slate-500 hover:text-red-500 hover:bg-red-50"
                         onClick={() => handleDelete(product.id)}
+                        aria-label="Hapus menu"
                     >
                         <Trash2 className="w-4 h-4" />
                     </Button>
@@ -445,7 +449,7 @@ export default function AdminMenuPage() {
             {/* Table */}
             <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50">
                 {loading ? (
-                    <div className="text-center py-8 text-slate-500">Memuat data menu...</div>
+                    <MenuSkeleton />
                 ) : (
                     <DataTable
                         columns={columns}

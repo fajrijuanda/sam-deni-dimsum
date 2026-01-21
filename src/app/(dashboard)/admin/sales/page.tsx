@@ -398,16 +398,17 @@ export default function SalesPage() {
                         variant="outline"
                         onClick={handleImportClick}
                         className="border-slate-300 hover:bg-slate-50"
+                        aria-label="Import data dari Excel"
                     >
-                        <Upload className="w-4 h-4 mr-2" />
+                        <Upload className="w-4 h-4 mr-2" aria-hidden="true" />
                         Import Excel
                     </Button>
 
                     {/* Add Sales Dialog */}
                     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <DialogTrigger asChild>
-                            <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg">
-                                <Plus className="w-4 h-4 mr-2" />
+                            <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg" aria-label="Input penjualan harian baru">
+                                <Plus className="w-4 h-4 mr-2" aria-hidden="true" />
                                 Input Harian
                             </Button>
                         </DialogTrigger>

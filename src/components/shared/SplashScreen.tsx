@@ -9,19 +9,7 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
     const [opacity, setOpacity] = useState(100)
 
     useEffect(() => {
-        // Check if splash screen was already shown in this session
-        const hasShown = sessionStorage.getItem("splash-shown")
-
-        if (hasShown) {
-            setIsVisible(false)
-            if (onFinish) onFinish()
-            return
-        }
-
-        // Mark as shown
-        sessionStorage.setItem("splash-shown", "true")
-
-        // Start fade out after 1.2 seconds (reduced from 2.5s)
+        // Start fade out after 1.2 seconds
         const timer = setTimeout(() => {
             setOpacity(0)
             // Remove from DOM after fade out completes (300ms transition)

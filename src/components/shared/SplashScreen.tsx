@@ -9,15 +9,27 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
     const [opacity, setOpacity] = useState(100)
 
     useEffect(() => {
-        // Start fade out after 2.5 seconds
+        // Check if splash screen was already shown in this session
+        const hasShown = sessionStorage.getItem("splash-shown")
+
+        if (hasShown) {
+            setIsVisible(false)
+            if (onFinish) onFinish()
+            return
+        }
+
+        // Mark as shown
+        sessionStorage.setItem("splash-shown", "true")
+
+        // Start fade out after 1.2 seconds (reduced from 2.5s)
         const timer = setTimeout(() => {
             setOpacity(0)
-            // Remove from DOM after fade out completes (500ms transition)
+            // Remove from DOM after fade out completes (300ms transition)
             setTimeout(() => {
                 setIsVisible(false)
                 if (onFinish) onFinish()
-            }, 500)
-        }, 2500)
+            }, 300)
+        }, 1200)
 
         return () => clearTimeout(timer)
     }, [onFinish])
@@ -39,7 +51,7 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
 
             <div className="relative z-10 flex flex-col items-center">
                 {/* Logo Animation */}
-                <div className="relative w-40 h-40 md:w-60 md:h-60 mb-8 animate-in zoom-in fade-in duration-1000 slide-in-from-bottom-10">
+                <div className="relative w-40 h-40 md:w-60 md:h-60 mb-8 animate-in zoom-in fade-in duration-700 slide-in-from-bottom-10">
                     <Image
                         src="/logo.png"
                         alt="Sam Deni Dimsum"
@@ -50,7 +62,7 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
                 </div>
 
                 {/* Text Animation */}
-                <div className="text-center space-y-2 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
+                <div className="text-center space-y-2 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
                     <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 tracking-tight">
                         SAM DENI
                     </h1>
@@ -61,7 +73,7 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
 
                 {/* Loading Bar */}
                 <div className="mt-12 w-48 h-1 bg-red-900/50 rounded-full overflow-hidden relative">
-                    <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 animate-[shimmer_2s_infinite_linear] bg-[length:200%_100%]"></div>
+                    <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 animate-[shimmer_1s_infinite_linear] bg-[length:200%_100%]"></div>
                 </div>
 
                 {/* Loading Text */}

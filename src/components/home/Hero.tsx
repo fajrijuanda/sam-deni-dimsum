@@ -69,9 +69,11 @@ export function Hero() {
                     </div>
                 </ScrollReveal>
 
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                    <ChevronDown className="w-8 h-8 text-white/50" />
-                </div>
+
+            </div>
+
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
+                <ChevronDown className="w-8 h-8 text-white/50" />
             </div>
         </div>
     )

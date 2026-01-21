@@ -140,6 +140,7 @@ export default function LoginPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 className="bg-white text-slate-900 border-transparent focus:border-yellow-400 focus:ring-yellow-400 h-11 shadow-inner"
+                                placeholder="********"
                             />
                         </div>
                         <Button type="submit" className="w-full bg-white hover:bg-red-50 text-[#C5161D] font-extrabold text-lg h-12 shadow-lg mt-4 transition-all active:scale-[0.98]">

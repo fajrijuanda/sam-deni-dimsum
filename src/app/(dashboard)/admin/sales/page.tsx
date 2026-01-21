@@ -7,6 +7,7 @@ import { DataTable } from "@/components/shared/DataTable"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
 import {
     Dialog,
     DialogContent,
@@ -380,7 +381,7 @@ export default function SalesPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
-                        Rekap Penjualan
+                        Penjualan
                     </h1>
                     <p className="text-slate-500 mt-1">Kelola dan pantau pemasukan & pengeluaran harian</p>
                 </div>

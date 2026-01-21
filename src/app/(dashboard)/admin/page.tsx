@@ -65,7 +65,7 @@ export default function AdminDashboard() {
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
-                        Super Admin Dashboard
+                        Dashboard
                     </h1>
                     <p className="text-slate-500 mt-1">Overview performa bisnis Sam Deni Dimsum hari ini.</p>
                 </div>

@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
-                        Analytics
+                        Analitik
                     </h1>
                     <p className="text-slate-500 mt-1">Insight performa bisnis dan tren penjualan</p>
                 </div>
@@ -206,9 +206,9 @@ export default function AnalyticsPage() {
                             <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${idx === 0 ? 'bg-amber-400 text-amber-900' :
-                                            idx === 1 ? 'bg-slate-300 text-slate-700' :
-                                                idx === 2 ? 'bg-amber-600 text-amber-100' :
-                                                    'bg-slate-200 text-slate-600'
+                                        idx === 1 ? 'bg-slate-300 text-slate-700' :
+                                            idx === 2 ? 'bg-amber-600 text-amber-100' :
+                                                'bg-slate-200 text-slate-600'
                                         }`}>
                                         {idx + 1}
                                     </div>

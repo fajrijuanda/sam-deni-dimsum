@@ -241,7 +241,7 @@ export default function MitraPage() {
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 to-red-500 bg-clip-text text-transparent">Manajemen Mitra & User</h1>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 to-red-500 bg-clip-text text-transparent">Manajemen Mitra</h1>
                 <Button onClick={fetchData} variant="outline" size="sm">Refresh</Button>
             </div>
 

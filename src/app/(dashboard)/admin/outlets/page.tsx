@@ -432,7 +432,7 @@ export default function OutletsPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
-                        Manajemen Outlet
+                        Outlet
                     </h1>
                     <p className="text-slate-500 mt-1">Kelola semua outlet Sam Deni Dimsum</p>
                 </div>

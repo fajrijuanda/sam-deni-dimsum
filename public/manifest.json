@@ -1,0 +1,20 @@
+{
+  "name": "Sam Deni Dimsum Management System",
+  "short_name": "Sam Deni Dimsum",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2b0808",
+  "theme_color": "#2b0808",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

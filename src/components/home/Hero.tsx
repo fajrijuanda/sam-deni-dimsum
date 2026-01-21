@@ -15,6 +15,8 @@ export function Hero() {
                     alt="pattern"
                     fill
                     className="object-cover scale-150 blur-sm opacity-50grayscale"
+                    sizes="(max-width: 768px) 100vw, 100vw"
+                    priority
                 />
             </div>
 
@@ -29,6 +31,7 @@ export function Hero() {
                             alt="Sam Deni Dimsum"
                             fill
                             className="object-contain drop-shadow-2xl"
+                            sizes="(max-width: 768px) 192px, 256px"
                             priority
                         />
                         {/* Glow Effect */}

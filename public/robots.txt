@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sam-deni-dimsum-seven.vercel.app/sitemap.xml

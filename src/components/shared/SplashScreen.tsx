@@ -61,7 +61,12 @@ export function SplashScreen({ onFinish }: { onFinish?: () => void }) {
 
                 {/* Loading Bar */}
                 <div className="mt-12 w-48 h-1 bg-red-900/50 rounded-full overflow-hidden relative">
-                    <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-[shimmer_2s_infinite] origin-left"></div>
+                    <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 animate-[shimmer_2s_infinite_linear] bg-[length:200%_100%]"></div>
+                </div>
+
+                {/* Loading Text */}
+                <div className="mt-4 text-xs font-medium tracking-[0.2em] text-yellow-500/80 animate-pulse uppercase">
+                    Loading System...
                 </div>
             </div>
 

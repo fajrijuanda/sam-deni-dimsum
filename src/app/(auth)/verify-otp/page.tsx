@@ -66,10 +66,7 @@ function VerifyOtpContent() {
             </div>
 
             <div className="w-full max-w-md p-0 rounded-xl overflow-hidden shadow-2xl shadow-red-950/60 z-10 bg-gradient-to-b from-[#dc2626] via-[#7f1d1d] to-[#2b0808] border-none ring-1 ring-white/5">
-                <div className="space-y-4 flex flex-col items-center pt-12 pb-6 px-4 relative">
-                    <Link href="/" className="absolute top-4 left-4 text-xs text-red-200/60 hover:text-white flex items-center gap-1 transition-colors">
-                        ← Back to Home
-                    </Link>
+                <div className="space-y-4 flex flex-col items-center pt-12 pb-6 px-4">
                     <div className="relative w-48 h-32 mb-4 hover:scale-105 transition-transform duration-300">
                         <Image
                             src={logo}
@@ -106,6 +103,11 @@ function VerifyOtpContent() {
                         <Button type="submit" className="w-full bg-white hover:bg-red-50 text-[#C5161D] font-extrabold text-lg h-12 shadow-lg mt-4 transition-all active:scale-[0.98]" disabled={loading}>
                             {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Verifikasi"}
                         </Button>
+                        <div className="text-center">
+                            <Link href="/" className="text-sm text-yellow-100 hover:text-white font-medium transition-colors hover:underline flex items-center justify-center gap-2">
+                                ← Back to Home
+                            </Link>
+                        </div>
                     </form>
                 </div>
 

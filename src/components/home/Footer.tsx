@@ -15,17 +15,17 @@ export function Footer() {
                             </div>
                             <span className="font-bold text-2xl">SAM DENI DIMSUM</span>
                         </div>
-                        <p className="text-slate-400 max-w-sm mb-6 leading-relaxed">
+                        <p className="text-slate-300 max-w-sm mb-6 leading-relaxed">
                             Penyedia dimsum frozen dan siap saji berkualitas premium dengan harga terjangkau. Mitra terpercaya usaha kuliner Anda.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://www.instagram.com/samdenidimsum?igsh=MWxsZjVicTV6Mmw0NQ%3D%3D" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <a href="https://www.instagram.com/samdenidimsum?igsh=MWxsZjVicTV6Mmw0NQ%3D%3D" target="_blank" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <Instagram className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a href="https://wa.me/6285117784817" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <a href="https://wa.me/6285117784817" target="_blank" aria-label="WhatsApp" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-red-600 transition-colors">
                                 <MessageCircle className="w-5 h-5" />
                             </a>
                         </div>
@@ -35,17 +35,17 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-6 text-red-500">Quick Links</h4>
                         <ul className="space-y-4">
-                            <li><Link href="#" className="text-slate-400 hover:text-white transition-colors">Beranda</Link></li>
-                            <li><Link href="#about" className="text-slate-400 hover:text-white transition-colors">Tentang Kami</Link></li>
-                            <li><Link href="#products" className="text-slate-400 hover:text-white transition-colors">Produk</Link></li>
-                            <li><Link href="/login" className="text-slate-400 hover:text-white transition-colors">Login System</Link></li>
+                            <li><Link href="#" className="text-slate-300 hover:text-white transition-colors">Beranda</Link></li>
+                            <li><Link href="#about" className="text-slate-300 hover:text-white transition-colors">Tentang Kami</Link></li>
+                            <li><Link href="#products" className="text-slate-300 hover:text-white transition-colors">Produk</Link></li>
+                            <li><Link href="/login" className="text-slate-300 hover:text-white transition-colors">Login System</Link></li>
                         </ul>
                     </div>
 
                     {/* Contact */}
                     <div>
                         <h4 className="font-bold text-lg mb-6 text-red-500">Hubungi Kami</h4>
-                        <ul className="space-y-4 text-slate-400">
+                        <ul className="space-y-4 text-slate-300">
                             <li>Jl. Dimsum Enak No. 123</li>
                             <li>Jakarta Selatan, 12345</li>
                             <li><a href="https://wa.me/6285117784817" className="hover:text-white transition-colors">+62 851-1778-4817</a></li>

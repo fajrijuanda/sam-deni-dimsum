@@ -42,7 +42,11 @@ export function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-md shadow-md py-3 text-red-900 dark:text-slate-100" : "bg-transparent py-5 text-white"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+                ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-md shadow-md py-3 text-red-900 dark:text-slate-100"
+                : isDark
+                    ? "bg-transparent py-5 text-white"
+                    : "bg-slate-950/25 backdrop-blur-md border-b border-white/20 py-5 text-slate-900"
                 }`}
         >
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
@@ -56,8 +60,8 @@ export function Navbar() {
                             className="object-contain drop-shadow-lg"
                         />
                     </div>
-                    <span className={`font-bold text-xl md:text-2xl tracking-tight hidden sm:block ${isScrolled ? 'text-red-800 dark:text-slate-100' : 'text-white'}`}>
-                        SAM DENI <span className={`${isScrolled ? 'text-yellow-600 dark:text-yellow-400' : 'text-yellow-400'}`}>DIMSUM</span>
+                    <span className={`font-bold text-xl md:text-2xl tracking-tight hidden sm:block ${isScrolled ? 'text-red-800 dark:text-slate-100' : isDark ? 'text-white' : 'text-red-950'}`}>
+                        SAM DENI <span className={`${isScrolled ? 'text-yellow-600 dark:text-yellow-400' : isDark ? 'text-yellow-400' : 'text-yellow-300'}`}>DIMSUM</span>
                     </span>
                 </Link>
 
@@ -67,7 +71,7 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className={`font-medium text-sm lg:text-base hover:text-yellow-500 transition-colors ${isScrolled ? 'text-slate-700 dark:text-slate-200' : 'text-white/90'}`}
+                            className={`font-medium text-sm lg:text-base hover:text-yellow-500 transition-colors ${isScrolled ? 'text-slate-700 dark:text-slate-200' : isDark ? 'text-white/90' : 'text-slate-100'}`}
                         >
                             {link.name}
                         </Link>
@@ -96,9 +100,9 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? (
-                        <X className={`w-6 h-6 ${isScrolled ? 'text-slate-900 dark:text-slate-100' : 'text-white'}`} />
+                        <X className={`w-6 h-6 ${isScrolled ? 'text-slate-900 dark:text-slate-100' : isDark ? 'text-white' : 'text-slate-100'}`} />
                     ) : (
-                        <Menu className={`w-6 h-6 ${isScrolled ? 'text-slate-900 dark:text-slate-100' : 'text-white'}`} />
+                        <Menu className={`w-6 h-6 ${isScrolled ? 'text-slate-900 dark:text-slate-100' : isDark ? 'text-white' : 'text-slate-100'}`} />
                     )}
                 </button>
             </div>

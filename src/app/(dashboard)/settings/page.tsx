@@ -125,7 +125,7 @@ export default function SettingsPage() {
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
                         Pengaturan
                     </h1>
-                    <p className="text-slate-500 mt-1">Kelola preferensi akun dan aplikasi</p>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">Kelola preferensi akun dan aplikasi</p>
                 </div>
                 <Button
                     onClick={handleSave}
@@ -144,25 +144,25 @@ export default function SettingsPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 {/* Sidebar Tabs */}
-                <GlassCard className="p-4 bg-white border border-slate-200/50 lg:col-span-1 h-fit">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/50 lg:col-span-1 h-fit">
                     <nav className="space-y-1">
                         {tabs.map(tab => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${activeTab === tab.id
-                                        ? 'bg-red-50 text-red-600 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
+                                    ? 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-medium'
+                                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                                     }`}
                             >
                                 <tab.icon className="w-5 h-5" />
                                 {tab.label}
                             </button>
                         ))}
-                        <hr className="my-3 border-slate-200" />
+                        <hr className="my-3 border-slate-200 dark:border-slate-700" />
                         <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-red-600 hover:bg-red-50 transition-all"
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all"
                         >
                             <LogOut className="w-5 h-5" />
                             Keluar
@@ -171,7 +171,7 @@ export default function SettingsPage() {
                 </GlassCard>
 
                 {/* Content Area */}
-                <GlassCard className="p-6 bg-white border border-slate-200/50 lg:col-span-3">
+                <GlassCard className="p-6 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/50 lg:col-span-3">
                     {renderTabContent()}
                 </GlassCard>
             </div>

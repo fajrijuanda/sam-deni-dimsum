@@ -140,7 +140,7 @@ export function AppSidebar({ userRole }: { userRole?: string | null }) {
             </SidebarHeader>
 
             {/* Menu Content */}
-            <SidebarContent className={cn(isCollapsed ? "px-1" : "px-2")}>
+            <SidebarContent className={cn(isCollapsed ? "px-1" : "px-2", "no-scrollbar")}>
                 {menuGroups.map((group, groupIndex) => (
                     <SidebarGroup key={groupIndex} className="py-2">
                         {group.label && !isCollapsed && (

@@ -43,8 +43,8 @@ export function AppearanceSettings({
                                 key={value}
                                 onClick={() => onAppearanceChange(value)}
                                 className={`p-4 rounded-lg border-2 transition-all ${appearance === value
-                                        ? 'border-red-500 bg-red-50'
-                                        : 'border-slate-200 hover:border-slate-300'
+                                    ? 'border-red-500 bg-red-50 dark:bg-red-900/30'
+                                    : 'border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500'
                                     }`}
                             >
                                 <Icon className={`w-8 h-8 mx-auto mb-2 ${iconColor}`} />

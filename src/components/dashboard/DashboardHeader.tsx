@@ -122,11 +122,10 @@ export function DashboardHeader() {
                                     </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem className="cursor-pointer">
-                                    <User className="w-4 h-4 mr-2" />
-                                    Profil Saya
-                                </DropdownMenuItem>
-                                <DropdownMenuItem className="cursor-pointer">
+                                <DropdownMenuItem
+                                    className="cursor-pointer"
+                                    onClick={() => router.push('/settings')}
+                                >
                                     <Settings className="w-4 h-4 mr-2" />
                                     Pengaturan
                                 </DropdownMenuItem>

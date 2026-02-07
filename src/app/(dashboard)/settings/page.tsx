@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     Settings,
     User,
@@ -16,6 +16,7 @@ import {
 import { GlassCard } from "@/components/shared/GlassCard"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase-browser"
+import { AppTheme, applyTheme, getStoredTheme, storeTheme } from "@/lib/theme"
 import {
     ProfileSettings,
     BusinessSettings,
@@ -75,7 +76,7 @@ export default function SettingsPage() {
     })
 
     // Appearance settings state
-    const [appearance, setAppearance] = useState("light")
+    const [appearance, setAppearance] = useState<AppTheme>("system")
 
     // Integration settings state
     const [integrations, setIntegrations] = useState<IntegrationSettingsType>({
@@ -84,10 +85,16 @@ export default function SettingsPage() {
         lastSync: null
     })
 
+    useEffect(() => {
+        setAppearance(getStoredTheme())
+    }, [])
+
     const handleSave = async () => {
         setIsSaving(true)
         // Simulate saving
         await new Promise(resolve => setTimeout(resolve, 1000))
+        storeTheme(appearance)
+        applyTheme(appearance)
         setIsSaving(false)
         setShowSaved(true)
         setTimeout(() => setShowSaved(false), 2000)

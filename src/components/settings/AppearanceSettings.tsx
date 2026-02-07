@@ -9,11 +9,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { THEME_OPTIONS } from "@/lib/constants"
+import type { AppTheme } from "@/lib/theme"
 
 interface AppearanceSettingsProps {
-    appearance: string
-    onAppearanceChange: (theme: string) => void
+    appearance: AppTheme
+    onAppearanceChange: (theme: AppTheme) => void
 }
 
 const themeConfig = [

@@ -53,6 +53,14 @@ const recentTransactions = [
 ]
 
 export default function AdminDashboard() {
+    const tooltipStyle = {
+        backgroundColor: "var(--card)",
+        borderRadius: "8px",
+        border: "1px solid var(--border)",
+        boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
+        color: "var(--foreground)",
+    }
+
     return (
         <div className="space-y-8 relative pb-20">
             {/* Decorative Background Elements */}
@@ -184,12 +192,9 @@ export default function AdminDashboard() {
                                     tickFormatter={(value) => `${value / 1000000}M`}
                                 />
                                 <Tooltip
-                                    contentStyle={{
-                                        backgroundColor: '#fff',
-                                        borderRadius: '8px',
-                                        border: 'none',
-                                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-                                    }}
+                                    contentStyle={tooltipStyle}
+                                    labelStyle={{ color: "var(--foreground)" }}
+                                    itemStyle={{ color: "var(--foreground)" }}
                                     formatter={(value: any) => [`Rp ${value.toLocaleString('id-ID')}`, 'Revenue']}
                                 />
                                 <Area
@@ -228,14 +233,11 @@ export default function AdminDashboard() {
                                     ))}
                                 </Pie>
                                 <Tooltip
-                                    contentStyle={{
-                                        backgroundColor: '#fff',
-                                        borderRadius: '8px',
-                                        border: 'none',
-                                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-                                    }}
+                                    contentStyle={tooltipStyle}
+                                    labelStyle={{ color: "var(--foreground)" }}
+                                    itemStyle={{ color: "var(--foreground)" }}
                                 />
-                                <Legend verticalAlign="bottom" height={36} />
+                                <Legend verticalAlign="bottom" height={36} wrapperStyle={{ color: "var(--foreground)" }} />
                             </PieChart>
                         </ResponsiveContainer>
                         {/* Center Text */}
@@ -267,7 +269,7 @@ export default function AdminDashboard() {
                             </thead>
                             <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                                 {recentTransactions.map((trx) => (
-                                    <tr key={trx.id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <tr key={trx.id} className="group hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
                                         <td className="py-3 pr-4">
                                             <div className="font-medium text-slate-800 dark:text-slate-200">{trx.outlet}</div>
                                             <div className="text-xs text-slate-500">{trx.id}</div>

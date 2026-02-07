@@ -202,8 +202,8 @@ export default function PackagesPage() {
         <div className="p-8 max-w-7xl mx-auto space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-slate-900">Manajemen Paket</h1>
-                    <p className="text-slate-500 mt-2">Atur harga, fitur, dan ketersediaan paket kemitraan.</p>
+                    <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Manajemen Paket</h1>
+                    <p className="text-slate-500 dark:text-slate-300 mt-2">Atur harga, fitur, dan ketersediaan paket kemitraan.</p>
                 </div>
                 <Dialog open={isDialogOpen} onOpenChange={(open) => {
                     setIsDialogOpen(open)
@@ -284,15 +284,15 @@ export default function PackagesPage() {
                 </Dialog>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+            <div className="bg-white dark:bg-slate-800/60 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
                 {loading ? (
-                    <div className="p-12 text-center text-slate-500 flex justify-center">
+                    <div className="p-12 text-center text-slate-500 dark:text-slate-300 flex justify-center">
                         <Loader2 className="w-8 h-8 animate-spin text-red-600" />
                     </div>
                 ) : (
                     <Table>
                         <TableHeader>
-                            <TableRow className="bg-slate-50">
+                            <TableRow className="bg-slate-50 dark:bg-slate-700/40">
                                 <TableHead className="w-[200px]">Nama Paket</TableHead>
                                 <TableHead>Harga</TableHead>
                                 <TableHead>Status</TableHead>
@@ -303,16 +303,16 @@ export default function PackagesPage() {
                         <TableBody>
                             {packages.length === 0 && (
                                 <TableRow>
-                                    <TableCell colSpan={5} className="text-center h-32 text-slate-500">
+                                    <TableCell colSpan={5} className="text-center h-32 text-slate-500 dark:text-slate-300">
                                         Belum ada data paket. Silakan tambah baru.
                                     </TableCell>
                                 </TableRow>
                             )}
                             {packages.map((pkg) => (
-                                <TableRow key={pkg.id} className="hover:bg-slate-50">
+                                <TableRow key={pkg.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/40">
                                     <TableCell>
-                                        <div className="font-bold text-slate-900">{pkg.name}</div>
-                                        <div className="text-xs text-slate-500 truncate max-w-[200px]">{pkg.description}</div>
+                                        <div className="font-bold text-slate-900 dark:text-slate-100">{pkg.name}</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-300 truncate max-w-[200px]">{pkg.description}</div>
                                     </TableCell>
                                     <TableCell className="font-bold text-red-600">
                                         {formatCurrency(pkg.price)}
@@ -326,15 +326,15 @@ export default function PackagesPage() {
                                         {pkg.is_popular ? (
                                             <Badge variant="outline" className="border-yellow-300 bg-yellow-50 text-yellow-700">Best Seller</Badge>
                                         ) : (
-                                            <span className="text-slate-400">-</span>
+                                            <span className="text-slate-400 dark:text-slate-500">-</span>
                                         )}
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex justify-end gap-2">
-                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-500 hover:text-blue-600" onClick={() => handleEdit(pkg)}>
+                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-500 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-300" onClick={() => handleEdit(pkg)}>
                                                 <Pencil className="w-4 h-4" />
                                             </Button>
-                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-500 hover:text-red-600" onClick={() => handleDelete(pkg.id)}>
+                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-500 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-300" onClick={() => handleDelete(pkg.id)}>
                                                 <Trash2 className="w-4 h-4" />
                                             </Button>
                                         </div>

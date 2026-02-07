@@ -74,7 +74,7 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
                         Dashboard Stok
                     </h1>
-                    <p className="text-slate-500 mt-1">
+                    <p className="text-slate-500 dark:text-slate-300 mt-1">
                         {role === 'admin' ? 'Monitoring Stok Outlet & Produksi' : 'Staff Produksi - Pantau stok harian'}
                     </p>
                 </div>
@@ -125,32 +125,32 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                     </div>
                 </GlassCard>
 
-                <Card className="border-slate-200 shadow-sm hover:shadow-md transition-all">
+                <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md transition-all">
                     <CardContent className="p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-2 h-full">
                         <div>
-                            <p className="text-xs md:text-sm text-slate-500 font-medium mb-1">Total Minggu Ini</p>
-                            <p className="text-xl md:text-3xl font-bold text-slate-800">{stats.weekTotal}</p>
+                            <p className="text-xs md:text-sm text-slate-500 dark:text-slate-300 font-medium mb-1">Total Minggu Ini</p>
+                            <p className="text-xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">{stats.weekTotal}</p>
                         </div>
-                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-purple-100 flex items-center justify-center self-end md:self-center">
-                            <BarChart3 className="w-4 h-4 md:w-6 md:h-6 text-purple-600" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-purple-100 dark:bg-purple-900/35 flex items-center justify-center self-end md:self-center">
+                            <BarChart3 className="w-4 h-4 md:w-6 md:h-6 text-purple-600 dark:text-purple-300" />
                         </div>
                     </CardContent>
                 </Card>
             </div>
 
             {/* Recent Movements Section */}
-            <Card className="border-slate-200 shadow-sm">
-                <CardHeader className="flex flex-row items-center justify-between border-b bg-slate-50/50 pb-4">
+            <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between border-b border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/30 pb-4">
                     <div className="flex items-center gap-2">
-                        <div className="p-2 bg-red-100 rounded-lg">
-                            <Calendar className="w-5 h-5 text-red-600" />
+                        <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
+                            <Calendar className="w-5 h-5 text-red-600 dark:text-red-300" />
                         </div>
                         <div>
-                            <CardTitle className="text-lg font-bold text-slate-800">Pergerakan Terbaru</CardTitle>
-                            <p className="text-sm text-slate-500">History pergerakan stok hari ini</p>
+                            <CardTitle className="text-lg font-bold text-slate-800 dark:text-slate-100">Pergerakan Terbaru</CardTitle>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">History pergerakan stok hari ini</p>
                         </div>
                     </div>
-                    <Button variant="ghost" className="text-red-600 hover:text-red-700 hover:bg-red-50" asChild>
+                    <Button variant="ghost" className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20" asChild>
                         <Link href={baseUrl}>
                             Lihat Semua <ArrowRight className="w-4 h-4 ml-2" />
                         </Link>
@@ -158,7 +158,7 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                 </CardHeader>
 
                 {/* Mobile View (List) */}
-                <div className="md:hidden divide-y divide-slate-100">
+                <div className="md:hidden divide-y divide-slate-100 dark:divide-slate-700">
                     {movements.map((movement) => {
                         const style = getMovementStyle(movement.type)
                         const Icon = style.icon
@@ -172,8 +172,8 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                                         <Icon className={`w-5 h-5 ${style.text}`} />
                                     </div>
                                     <div>
-                                        <p className="font-medium text-sm text-slate-900">{movement.product}</p>
-                                        <p className="text-xs text-slate-500">{formatDate(movement.date)}</p>
+                                        <p className="font-medium text-sm text-slate-900 dark:text-slate-100">{movement.product}</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-300">{formatDate(movement.date)}</p>
                                     </div>
                                 </div>
                                 <div className={`font-bold ${style.text}`}>
@@ -200,8 +200,8 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                                 const style = getMovementStyle(movement.type)
                                 const Icon = style.icon
                                 return (
-                                    <TableRow key={movement.id} className="cursor-pointer hover:bg-slate-50">
-                                        <TableCell className="font-medium text-slate-600">
+                                    <TableRow key={movement.id} className="cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/40">
+                                        <TableCell className="font-medium text-slate-600 dark:text-slate-300">
                                             {formatDate(movement.date)}
                                         </TableCell>
                                         <TableCell>
@@ -210,7 +210,7 @@ export function StockDashboard({ role = 'staff' }: StockDashboardProps) {
                                                 <span className="capitalize">{movement.type}</span>
                                             </div>
                                         </TableCell>
-                                        <TableCell className="text-slate-900 font-medium">
+                                        <TableCell className="text-slate-900 dark:text-slate-100 font-medium">
                                             {movement.product}
                                         </TableCell>
                                         <TableCell className={`text-right font-bold ${style.text}`}>

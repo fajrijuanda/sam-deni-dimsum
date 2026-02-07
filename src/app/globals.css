@@ -181,6 +181,48 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Dark mode normalization for legacy dashboard classes */
+  .dark .dashboard-shell .bg-white {
+    background-color: oklch(0.205 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="bg-slate-50"] {
+    background-color: oklch(0.269 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="bg-slate-100"] {
+    background-color: oklch(0.31 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="border-slate-200"] {
+    border-color: oklch(1 0 0 / 12%) !important;
+  }
+
+  .dark .dashboard-shell [class*="border-slate-100"] {
+    border-color: oklch(1 0 0 / 8%) !important;
+  }
+
+  .dark .dashboard-shell [class*="text-slate-500"] {
+    color: oklch(0.74 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="text-slate-600"] {
+    color: oklch(0.82 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="text-slate-700"] {
+    color: oklch(0.9 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="text-slate-800"],
+  .dark .dashboard-shell [class*="text-slate-900"] {
+    color: oklch(0.98 0 0) !important;
+  }
+
+  .dark .dashboard-shell [class*="hover:bg-slate-50"]:hover {
+    background-color: oklch(0.31 0 0) !important;
+  }
 }
 
 @keyframes shimmer {

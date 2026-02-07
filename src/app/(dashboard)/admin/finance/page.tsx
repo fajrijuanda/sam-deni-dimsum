@@ -89,7 +89,7 @@ export default function FinancePage() {
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
                         Laporan Keuangan
                     </h1>
-                    <p className="text-slate-500 mt-1">Ringkasan keuangan dan arus kas bisnis</p>
+                    <p className="text-slate-500 dark:text-slate-300 mt-1">Ringkasan keuangan dan arus kas bisnis</p>
                 </div>
                 <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white">
                     <Download className="w-4 h-4 mr-2" /> Export Laporan
@@ -97,7 +97,7 @@ export default function FinancePage() {
             </div>
 
             {/* Filters */}
-            <GlassCard className="p-4 bg-white border border-slate-200/50">
+            <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                     <div className="space-y-2">
                         <Label>Outlet</Label>
@@ -172,26 +172,26 @@ export default function FinancePage() {
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
                             <Banknote className="w-5 h-5 text-green-500" />
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500">Cash In</p>
-                            <p className="text-xl font-bold">{formatCurrency(stats.totalCashIn)}</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">Cash In</p>
+                            <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{formatCurrency(stats.totalCashIn)}</p>
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
                             <CreditCard className="w-5 h-5 text-blue-500" />
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500">QRIS In</p>
-                            <p className="text-xl font-bold">{formatCurrency(stats.totalQrisIn)}</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">QRIS In</p>
+                            <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{formatCurrency(stats.totalQrisIn)}</p>
                         </div>
                     </div>
                 </GlassCard>
@@ -227,24 +227,24 @@ export default function FinancePage() {
             </div>
 
             {/* Daily Breakdown Table */}
-            <GlassCard className="p-4 bg-white border border-slate-200/50">
+            <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                        <FileSpreadsheet className="w-5 h-5 text-slate-500" />
-                        <h3 className="font-semibold text-lg">Rincian Harian</h3>
+                        <FileSpreadsheet className="w-5 h-5 text-slate-500 dark:text-slate-300" />
+                        <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100">Rincian Harian</h3>
                     </div>
                 </div>
 
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
-                            <tr className="border-b border-slate-200">
-                                <th className="text-left py-3 px-2 text-sm font-medium text-slate-500">Tanggal</th>
-                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500">Cash</th>
-                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500">QRIS</th>
-                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500">Total</th>
-                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500">Pengeluaran</th>
-                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500">Netto</th>
+                            <tr className="border-b border-slate-200 dark:border-slate-700">
+                                <th className="text-left py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">Tanggal</th>
+                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">Cash</th>
+                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">QRIS</th>
+                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">Total</th>
+                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">Pengeluaran</th>
+                                <th className="text-right py-3 px-2 text-sm font-medium text-slate-500 dark:text-slate-300">Netto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -252,22 +252,22 @@ export default function FinancePage() {
                                 const total = row.cashIn + row.qrisIn
                                 const netto = total - row.expenses
                                 return (
-                                    <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50">
-                                        <td className="py-3 px-2 text-sm font-medium">
+                                    <tr key={idx} className="border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/40">
+                                        <td className="py-3 px-2 text-sm font-medium text-slate-900 dark:text-slate-100">
                                             {new Date(row.date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' })}
                                         </td>
                                         <td className="py-3 px-2 text-sm text-right text-green-600">{formatCurrency(row.cashIn)}</td>
                                         <td className="py-3 px-2 text-sm text-right text-blue-600">{formatCurrency(row.qrisIn)}</td>
-                                        <td className="py-3 px-2 text-sm text-right font-medium">{formatCurrency(total)}</td>
+                                        <td className="py-3 px-2 text-sm text-right font-medium text-slate-900 dark:text-slate-100">{formatCurrency(total)}</td>
                                         <td className="py-3 px-2 text-sm text-right text-red-600">{formatCurrency(row.expenses)}</td>
-                                        <td className="py-3 px-2 text-sm text-right font-bold text-slate-800">{formatCurrency(netto)}</td>
+                                        <td className="py-3 px-2 text-sm text-right font-bold text-slate-800 dark:text-slate-100">{formatCurrency(netto)}</td>
                                     </tr>
                                 )
                             })}
                         </tbody>
                         <tfoot>
-                            <tr className="bg-slate-50 font-semibold">
-                                <td className="py-3 px-2 text-sm">TOTAL</td>
+                            <tr className="bg-slate-50 dark:bg-slate-700/40 font-semibold">
+                                <td className="py-3 px-2 text-sm text-slate-900 dark:text-slate-100">TOTAL</td>
                                 <td className="py-3 px-2 text-sm text-right text-green-600">{formatCurrency(stats.totalCashIn)}</td>
                                 <td className="py-3 px-2 text-sm text-right text-blue-600">{formatCurrency(stats.totalQrisIn)}</td>
                                 <td className="py-3 px-2 text-sm text-right">{formatCurrency(stats.totalRevenue)}</td>

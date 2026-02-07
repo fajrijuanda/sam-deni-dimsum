@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import {
     Settings,
     User,
@@ -29,7 +29,8 @@ import type {
     UserProfile,
     BusinessSettings as BusinessSettingsType,
     NotificationSettings as NotificationSettingsType,
-    IntegrationSettings as IntegrationSettingsType
+    IntegrationSettings as IntegrationSettingsType,
+    UserRole
 } from "@/lib/types"
 
 // Tab configuration with icons
@@ -46,6 +47,7 @@ type TabId = typeof tabs[number]["id"]
 
 export default function SettingsPage() {
     const supabase = createClient()
+    const [userRole, setUserRole] = useState<UserRole>("staff")
     const [activeTab, setActiveTab] = useState<TabId>("profile")
     const [isSaving, setIsSaving] = useState(false)
     const [showSaved, setShowSaved] = useState(false)
@@ -88,6 +90,47 @@ export default function SettingsPage() {
     useEffect(() => {
         setAppearance(getStoredTheme())
     }, [])
+
+    useEffect(() => {
+        async function fetchUserProfile() {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (!user) return
+
+            const { data } = await supabase
+                .from("users")
+                .select("full_name, role")
+                .eq("id", user.id)
+                .single()
+
+            const role = (data?.role || user.user_metadata?.role || "staff") as UserRole
+            const name =
+                data?.full_name ||
+                user.user_metadata?.full_name ||
+                user.email?.split("@")[0] ||
+                "User"
+
+            setUserRole(role)
+            setProfile((prev) => ({
+                ...prev,
+                name,
+                email: user.email || prev.email,
+                role: role.charAt(0).toUpperCase() + role.slice(1),
+            }))
+        }
+
+        fetchUserProfile()
+    }, [])
+
+    const visibleTabs = useMemo(
+        () => tabs.filter((tab) => !(userRole === "mitra" && tab.id === "integrations")),
+        [userRole]
+    )
+
+    useEffect(() => {
+        if (!visibleTabs.some((tab) => tab.id === activeTab)) {
+            setActiveTab("profile")
+        }
+    }, [activeTab, visibleTabs])
 
     const handleSave = async () => {
         setIsSaving(true)
@@ -153,7 +196,7 @@ export default function SettingsPage() {
                 {/* Sidebar Tabs */}
                 <GlassCard className="p-4 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/50 lg:col-span-1 h-fit">
                     <nav className="space-y-1">
-                        {tabs.map(tab => (
+                        {visibleTabs.map(tab => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}

@@ -50,7 +50,7 @@ export default function DashboardLayout({
                 <AppSidebar userRole={userRole} />
             </div>
 
-            <main className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-white to-red-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-red-950/20">
+            <main className="dashboard-shell w-full min-h-screen bg-gradient-to-br from-slate-50 via-white to-red-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-red-950/20">
                 <DashboardHeader />
                 {/* Content - add bottom padding for mobile taskbar */}
                 <div className={`p-6 ${useMobileTaskbar ? "pb-24 md:pb-6" : ""}`}>

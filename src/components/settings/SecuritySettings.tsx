@@ -14,27 +14,26 @@ export function SecuritySettings() {
             </div>
 
             <div className="space-y-4">
-                {/* Change Password Section */}
-                <div className="p-4 border border-slate-200 rounded-lg">
+                <div className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50/40 dark:bg-slate-900/20">
                     <div className="flex items-center gap-3 mb-4">
-                        <Key className="w-5 h-5 text-slate-500" />
+                        <Key className="w-5 h-5 text-slate-500 dark:text-slate-300" />
                         <div>
-                            <p className="font-medium">Ubah Password</p>
-                            <p className="text-sm text-slate-500">Perbarui password akun Anda</p>
+                            <p className="font-medium text-slate-900 dark:text-slate-100">Ubah Password</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">Perbarui password akun Anda</p>
                         </div>
                     </div>
                     <div className="space-y-3">
                         <div className="space-y-2">
                             <Label>Password Lama</Label>
-                            <Input type="password" placeholder="••••••••" />
+                            <Input type="password" placeholder="********" />
                         </div>
                         <div className="space-y-2">
                             <Label>Password Baru</Label>
-                            <Input type="password" placeholder="••••••••" />
+                            <Input type="password" placeholder="********" />
                         </div>
                         <div className="space-y-2">
                             <Label>Konfirmasi Password Baru</Label>
-                            <Input type="password" placeholder="••••••••" />
+                            <Input type="password" placeholder="********" />
                         </div>
                         <Button variant="outline" className="w-full">
                             Ubah Password
@@ -42,10 +41,9 @@ export function SecuritySettings() {
                     </div>
                 </div>
 
-                {/* Danger Zone */}
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="font-medium text-red-700 mb-2">Zona Berbahaya</p>
-                    <p className="text-sm text-red-600 mb-3">Tindakan ini tidak dapat dibatalkan.</p>
+                <div className="p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-lg">
+                    <p className="font-medium text-red-700 dark:text-red-300 mb-2">Zona Berbahaya</p>
+                    <p className="text-sm text-red-600 dark:text-red-300/90 mb-3">Tindakan ini tidak dapat dibatalkan.</p>
                     <Button variant="destructive" className="w-full">
                         Hapus Akun
                     </Button>

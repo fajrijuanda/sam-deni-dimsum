@@ -87,10 +87,10 @@ export default function AnalyticsPage() {
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
                         Analitik
                     </h1>
-                    <p className="text-slate-500 mt-1">Insight performa bisnis dan tren penjualan</p>
+                    <p className="text-slate-500 dark:text-slate-300 mt-1">Insight performa bisnis dan tren penjualan</p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Label className="text-sm text-slate-500">Periode:</Label>
+                    <Label className="text-sm text-slate-500 dark:text-slate-300">Periode:</Label>
                     <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
                         <SelectTrigger className="w-[140px]">
                             <SelectValue />
@@ -139,26 +139,26 @@ export default function AnalyticsPage() {
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
                             <Package className="w-5 h-5 text-amber-500" />
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500">Item Terjual</p>
-                            <p className="text-xl font-bold">{stats.totalProductsSold} pcs</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">Item Terjual</p>
+                            <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{stats.totalProductsSold} pcs</p>
                         </div>
                     </div>
                 </GlassCard>
 
-                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
                             <Users className="w-5 h-5 text-green-500" />
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500">Avg. Ticket</p>
-                            <p className="text-xl font-bold">{formatCurrency(stats.avgTicketSize)}</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-300">Avg. Ticket</p>
+                            <p className="text-xl font-bold text-slate-900 dark:text-slate-100">{formatCurrency(stats.avgTicketSize)}</p>
                         </div>
                     </div>
                 </GlassCard>
@@ -167,7 +167,7 @@ export default function AnalyticsPage() {
             {/* Charts Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Weekly Sales Trend */}
-                <GlassCard className="p-4 bg-white border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-2 mb-4">
                         <BarChart3 className="w-5 h-5 text-red-500" />
                         <h3 className="font-semibold text-lg">Tren Penjualan Mingguan</h3>
@@ -182,13 +182,13 @@ export default function AnalyticsPage() {
                                         style={{ height: `${height}%` }}
                                         title={formatCurrency(day.sales)}
                                     />
-                                    <span className="text-xs text-slate-500 mt-2">{day.day}</span>
+                                    <span className="text-xs text-slate-500 dark:text-slate-300 mt-2">{day.day}</span>
                                 </div>
                             )
                         })}
                     </div>
-                    <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between text-sm">
-                        <span className="text-slate-500">Total: <span className="font-semibold text-slate-800">{formatCurrency(stats.totalSales)}</span></span>
+                    <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between text-sm">
+                        <span className="text-slate-500 dark:text-slate-300">Total: <span className="font-semibold text-slate-800 dark:text-slate-100">{formatCurrency(stats.totalSales)}</span></span>
                         <span className="text-green-600 flex items-center gap-1">
                             <ArrowUpRight className="w-4 h-4" /> 15.3% vs minggu lalu
                         </span>
@@ -196,14 +196,14 @@ export default function AnalyticsPage() {
                 </GlassCard>
 
                 {/* Top Products */}
-                <GlassCard className="p-4 bg-white border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                     <div className="flex items-center gap-2 mb-4">
                         <Flame className="w-5 h-5 text-orange-500" />
                         <h3 className="font-semibold text-lg">Produk Terlaris</h3>
                     </div>
                     <div className="space-y-3">
                         {topProducts.map((product, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/40 rounded-lg border border-slate-200/50 dark:border-slate-700">
                                 <div className="flex items-center gap-3">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${idx === 0 ? 'bg-amber-400 text-amber-900' :
                                         idx === 1 ? 'bg-slate-300 text-slate-700' :
@@ -213,8 +213,8 @@ export default function AnalyticsPage() {
                                         {idx + 1}
                                     </div>
                                     <div>
-                                        <p className="font-medium text-sm">{product.name}</p>
-                                        <p className="text-xs text-slate-500">{product.sold} terjual</p>
+                                        <p className="font-medium text-sm text-slate-900 dark:text-slate-100">{product.name}</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-300">{product.sold} terjual</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
@@ -231,16 +231,16 @@ export default function AnalyticsPage() {
             </div>
 
             {/* Outlet Performance */}
-            <GlassCard className="p-4 bg-white border border-slate-200/50">
+                <GlassCard className="p-4 bg-white dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50">
                 <div className="flex items-center gap-2 mb-4">
                     <Store className="w-5 h-5 text-blue-500" />
                     <h3 className="font-semibold text-lg">Performa per Outlet</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {outletPerformance.map((outlet, idx) => (
-                        <div key={idx} className="p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg border border-slate-200">
+                        <div key={idx} className="p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700/50 dark:to-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700">
                             <div className="flex items-center justify-between mb-3">
-                                <h4 className="font-semibold">{outlet.name}</h4>
+                                <h4 className="font-semibold text-slate-900 dark:text-slate-100">{outlet.name}</h4>
                                 {idx === 0 && (
                                     <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full flex items-center gap-1">
                                         <Award className="w-3 h-3" /> Top Outlet
@@ -249,16 +249,16 @@ export default function AnalyticsPage() {
                             </div>
                             <div className="grid grid-cols-3 gap-4 text-center">
                                 <div>
-                                    <p className="text-xs text-slate-500">Revenue</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-300">Revenue</p>
                                     <p className="font-bold text-green-600">{formatCurrency(outlet.revenue)}</p>
                                 </div>
                                 <div>
-                                    <p className="text-xs text-slate-500">Transaksi</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-300">Transaksi</p>
                                     <p className="font-bold text-blue-600">{outlet.transactions}</p>
                                 </div>
                                 <div>
-                                    <p className="text-xs text-slate-500">Avg Ticket</p>
-                                    <p className="font-bold text-slate-700">{formatCurrency(outlet.avgTicket)}</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-300">Avg Ticket</p>
+                                    <p className="font-bold text-slate-700 dark:text-slate-100">{formatCurrency(outlet.avgTicket)}</p>
                                 </div>
                             </div>
                         </div>

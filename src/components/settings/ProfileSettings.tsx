@@ -23,13 +23,13 @@ export function ProfileSettings({ profile, onProfileChange }: ProfileSettingsPro
             </div>
 
             {/* Avatar Section */}
-            <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-lg">
+            <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700 rounded-lg">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white text-2xl font-bold">
                     {profile.name.charAt(0)}
                 </div>
                 <div>
-                    <p className="font-semibold">{profile.name}</p>
-                    <p className="text-sm text-slate-500">{profile.role}</p>
+                    <p className="font-semibold text-slate-900 dark:text-slate-100">{profile.name}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-300">{profile.role}</p>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@ export function ProfileSettings({ profile, onProfileChange }: ProfileSettingsPro
                 </div>
                 <div className="space-y-2">
                     <Label>Role</Label>
-                    <Input value={profile.role} disabled className="bg-slate-100" />
+                    <Input value={profile.role} disabled className="bg-slate-100 dark:bg-slate-700/50 dark:text-slate-200" />
                 </div>
             </div>
         </div>
